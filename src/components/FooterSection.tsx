@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Phone, Mail, MapPin, MessageCircle, Heart, Send } from "lucide-react";
+import { Phone, Mail, MapPin, MessageCircle, Heart, Send, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const FooterSection = () => {
@@ -20,6 +20,12 @@ const FooterSection = () => {
       label: "E-mail",
       value: "comercialflorybalsc@gmail.com",
       href: "mailto:comercialflorybalsc@gmail.com",
+    },
+    {
+      icon: Instagram,
+      label: "Instagram",
+      value: "@florybalpomerode",
+      href: "https://www.instagram.com/florybalpomerode/",
     },
     {
       icon: MapPin,
@@ -62,7 +68,7 @@ const FooterSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="grid md:grid-cols-3 gap-4 mb-12"
+            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12"
           >
             {contactInfo.map((contact, index) => (
               <motion.a
