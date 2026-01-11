@@ -1,160 +1,176 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import heroImage from "@/assets/hero-chocolates.jpg";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, Sparkles } from "lucide-react";
+import { ChevronDown, Sparkles, Award, Star } from "lucide-react";
 
 const HeroSection = () => {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
   const scrollToContent = () => {
     const element = document.getElementById("apresentacao");
     element?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0">
+    <section ref={containerRef} className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
+      {/* Parallax Background Image */}
+      <motion.div style={{ y }} className="absolute inset-0">
         <img
           src={heroImage}
           alt="Chocolates Florybal - Páscoa Premium"
-          className="w-full h-full object-cover scale-105"
+          className="w-full h-[120%] object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-chocolate-950/85 via-chocolate-950/70 to-chocolate-950/95" />
-        {/* Animated overlay pattern */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(212,164,56,0.08)_0%,transparent_50%)]" />
-      </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-chocolate-950/80 via-chocolate-950/60 to-chocolate-950/95" />
+        {/* Grain texture overlay for premium feel */}
+        <div className="absolute inset-0 opacity-[0.015] mix-blend-overlay" 
+          style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E\")" }} 
+        />
+      </motion.div>
 
-      {/* Floating Decorative Elements */}
+      {/* Animated ambient light spots */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 2 }}
-        className="absolute top-20 left-10 w-40 h-40 bg-gold-400/10 rounded-full blur-3xl"
+        animate={{ 
+          opacity: [0.3, 0.5, 0.3],
+          scale: [1, 1.1, 1]
+        }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-gold-400/10 rounded-full blur-[120px]"
       />
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 2, delay: 0.5 }}
-        className="absolute bottom-40 right-20 w-56 h-56 bg-easter/10 rounded-full blur-3xl"
-      />
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 2, delay: 1 }}
-        className="absolute top-1/2 left-1/4 w-32 h-32 bg-gold-500/5 rounded-full blur-2xl"
+        animate={{ 
+          opacity: [0.2, 0.4, 0.2],
+          scale: [1.1, 1, 1.1]
+        }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-easter/10 rounded-full blur-[100px]"
       />
 
       {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
-        {/* Exclusive Badge */}
+      <motion.div style={{ opacity }} className="relative z-10 text-center px-6 max-w-5xl mx-auto">
+        {/* Trust indicators - Float above */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="inline-flex items-center gap-2 bg-gradient-to-r from-gold-500/20 to-gold-400/10 backdrop-blur-md border border-gold-400/30 rounded-full px-6 py-2.5 mb-8"
+          transition={{ duration: 1, delay: 0.2 }}
+          className="flex flex-wrap justify-center gap-4 mb-8"
         >
-          <Sparkles className="w-4 h-4 text-gold-400" />
-          <span className="text-gold-300 font-body text-sm tracking-wide font-medium">
-            Experiência Corporativa Exclusiva
-          </span>
-          <Sparkles className="w-4 h-4 text-gold-400" />
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-gold-500/10 backdrop-blur-sm border border-gold-400/20">
+            <Award className="w-4 h-4 text-gold-400" />
+            <span className="text-gold-300/90 text-xs font-medium tracking-wide">+30 Anos de Excelência</span>
+          </div>
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-gold-500/10 backdrop-blur-sm border border-gold-400/20">
+            <Star className="w-4 h-4 text-gold-400 fill-gold-400" />
+            <span className="text-gold-300/90 text-xs font-medium tracking-wide">Referência em Gramado</span>
+          </div>
         </motion.div>
 
-        {/* Main Heading */}
+        {/* Exclusive Badge */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="inline-flex items-center gap-2 bg-gradient-to-r from-gold-500/20 via-gold-400/30 to-gold-500/20 backdrop-blur-md border border-gold-400/40 rounded-full px-8 py-3 mb-10"
+        >
+          <Sparkles className="w-4 h-4 text-gold-300" />
+          <span className="text-gold-200 font-body text-sm tracking-[0.2em] font-semibold uppercase">
+            Proposta Exclusiva
+          </span>
+          <Sparkles className="w-4 h-4 text-gold-300" />
+        </motion.div>
+
+        {/* Main Heading - Larger, more dramatic */}
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="font-display text-5xl md:text-7xl lg:text-8xl text-gold-100 leading-tight mb-6"
+          transition={{ duration: 1, delay: 0.6 }}
+          className="font-display text-5xl md:text-7xl lg:text-[5.5rem] text-gold-50 leading-[0.95] mb-8 tracking-tight"
         >
           Feira de Páscoa
           <motion.span
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="block text-gradient-gold"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 1 }}
+            className="block text-gradient-gold mt-2"
           >
             Florybal
           </motion.span>
         </motion.h1>
 
-        {/* Subheading - More persuasive */}
+        {/* Value proposition - Clear and impactful */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="font-body text-lg md:text-xl text-gold-200/90 max-w-3xl mx-auto mb-4 leading-relaxed"
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="font-body text-lg md:text-xl text-gold-200/90 max-w-2xl mx-auto mb-6 leading-relaxed"
         >
-          Mais do que chocolate — uma experiência sensorial que transforma
-          <br className="hidden md:block" />
-          <span className="text-gold-300 font-medium">memória afetiva em encantamento</span>
+          Uma experiência sensorial exclusiva que transforma o ambiente corporativo 
+          em um espaço de <span className="text-gold-300 font-medium">sabor, presente e emoção</span>
         </motion.p>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="font-display text-2xl md:text-3xl text-gold-300 italic mb-12"
+          transition={{ duration: 0.8, delay: 1 }}
+          className="font-display text-xl md:text-2xl text-gold-400 mb-12"
         >
-          Proposta exclusiva para a equipe Mueller
+          Para a equipe <span className="font-semibold">Mueller</span>
         </motion.p>
 
-        {/* CTA Buttons */}
+        {/* CTA Buttons - Better visual hierarchy */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: 0.8, delay: 1.2 }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-          <Button variant="hero" onClick={scrollToContent} className="group">
-            <span>Descobrir a Experiência</span>
+          <Button variant="hero" size="lg" onClick={scrollToContent} className="group min-w-[220px]">
+            <span>Conhecer a Proposta</span>
             <motion.span
-              animate={{ x: [0, 5, 0] }}
-              transition={{ repeat: Infinity, duration: 1.5 }}
+              animate={{ x: [0, 4, 0] }}
+              transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+              className="ml-2"
             >
               →
             </motion.span>
           </Button>
-          <Button variant="heroOutline" asChild>
-            <a href="#contato">Agendar Conversa</a>
+          <Button variant="heroOutline" size="lg" asChild className="min-w-[220px]">
+            <a href="#contato">
+              <span className="relative z-10">Agendar Conversa</span>
+            </a>
           </Button>
         </motion.div>
+      </motion.div>
 
-        {/* Trust Elements */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1 }}
-          className="mt-16 flex flex-wrap justify-center gap-8 text-gold-400/60"
-        >
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-gold-400/60" />
-            <span className="font-body text-sm">Tradição de Gramado</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-gold-400/60" />
-            <span className="font-body text-sm">+30 Anos de Excelência</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-gold-400/60" />
-            <span className="font-body text-sm">Chocolate Artesanal Premium</span>
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Scroll Indicator */}
+      {/* Scroll Indicator - More subtle */}
       <motion.button
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1, y: [0, 10, 0] }}
-        transition={{ 
-          opacity: { duration: 1, delay: 1.5 },
-          y: { repeat: Infinity, duration: 2, ease: "easeInOut" }
-        }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 2 }}
         onClick={scrollToContent}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-gold-400/60 hover:text-gold-400 transition-colors"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gold-400/50 hover:text-gold-400 transition-colors group"
         aria-label="Rolar para baixo"
       >
-        <ChevronDown className="w-8 h-8" />
+        <span className="text-xs font-body tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity">
+          Explorar
+        </span>
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+        >
+          <ChevronDown className="w-6 h-6" />
+        </motion.div>
       </motion.button>
+
+      {/* Bottom gradient fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </section>
   );
 };
