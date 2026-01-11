@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import chocolatesImage from "@/assets/chocolates-detail.jpg";
+import chocolatesImage from "@/assets/coracoes-trufados.jpg";
+import logoImage from "@/assets/selo-loja-autorizada.png";
 import { Award, Heart, Star, CheckCircle } from "lucide-react";
 
 const ApresentacaoSection = () => {
@@ -69,14 +70,14 @@ const ApresentacaoSection = () => {
               </div>
             </motion.div>
 
-            {/* Premium badge */}
+            {/* Selo Loja Autorizada */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: 0.8 }}
-              className="absolute top-6 -left-4 lg:-left-6 bg-chocolate-950 rounded-full p-3 shadow-lg border border-gold-500/30"
+              className="absolute top-4 -left-4 lg:-left-8 bg-white rounded-xl p-2 shadow-lg"
             >
-              <Star className="w-6 h-6 text-gold-400 fill-gold-400" />
+              <img src={logoImage} alt="Florybal Loja Autorizada" className="w-20 h-auto" />
             </motion.div>
           </motion.div>
 

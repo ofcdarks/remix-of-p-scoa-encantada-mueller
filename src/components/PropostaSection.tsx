@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import corporateImage from "@/assets/corporate-event.jpg";
+import corporateImage from "@/assets/alfajor.png";
 import { Sparkles, Gift, ShoppingBag, Users, ArrowRight } from "lucide-react";
 
 const PropostaSection = () => {

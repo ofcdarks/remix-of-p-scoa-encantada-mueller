@@ -3,6 +3,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Phone, Mail, MapPin, MessageCircle, Heart, Send, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logoImage from "@/assets/florybal-logo.jpg";
 
 const FooterSection = () => {
   const ref = useRef(null);
@@ -53,11 +54,13 @@ const FooterSection = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-12"
           >
-            <div className="inline-flex items-center gap-3 mb-6">
+            {/* Logo */}
+            <img src={logoImage} alt="Florybal Logo" className="h-24 md:h-28 object-contain mx-auto mb-6" />
+            <div className="inline-flex items-center gap-3 mb-4">
               <Heart className="w-5 h-5 text-easter fill-easter" />
               <span className="font-body text-gold-300/80 tracking-wide">Com carinho,</span>
             </div>
-            <h3 className="font-display text-3xl md:text-4xl text-gold-50 mb-2">
+            <h3 className="font-display text-2xl md:text-3xl text-gold-50 mb-2">
               Equipe Florybal
             </h3>
             <p className="font-body text-gold-400/70">Chocolates Caseiros • Pomerode/SC</p>
