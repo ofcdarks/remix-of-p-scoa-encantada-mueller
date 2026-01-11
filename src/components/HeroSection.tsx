@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import heroImage from "@/assets/hero-chocolates.jpg";
+import heroImage from "@/assets/licores-duo.png";
+import logoImage from "@/assets/florybal-logo.jpg";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Sparkles, Award, Star } from "lucide-react";
 
@@ -62,14 +63,8 @@ const HeroSection = () => {
           transition={{ duration: 1, delay: 0.2 }}
           className="flex flex-wrap justify-center gap-4 mb-8"
         >
-          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-gold-500/10 backdrop-blur-sm border border-gold-400/20">
-            <Award className="w-4 h-4 text-gold-400" />
-            <span className="text-gold-300/90 text-xs font-medium tracking-wide">+30 Anos de Excelência</span>
-          </div>
-          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-gold-500/10 backdrop-blur-sm border border-gold-400/20">
-            <Star className="w-4 h-4 text-gold-400 fill-gold-400" />
-            <span className="text-gold-300/90 text-xs font-medium tracking-wide">Referência em Gramado</span>
-          </div>
+          {/* Logo */}
+          <img src={logoImage} alt="Florybal Logo" className="h-16 md:h-20 object-contain" />
         </motion.div>
 
         {/* Exclusive Badge */}
