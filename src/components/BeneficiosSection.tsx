@@ -138,7 +138,7 @@ const BeneficiosSection = () => {
                 com impacto emocional duradouro."
               </p>
               <p className="font-body text-sm text-gold-400/60 mt-4">
-                — Proposta de valor Florybal
+                — Proposta de Valor Florybal Pomerode
               </p>
             </div>
           </motion.div>
