@@ -71,7 +71,7 @@ const BeneficiosSection = () => {
             >
               <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-gold-50 leading-tight">
                 Por que escolher a
-                <span className="block text-gradient-gold">Florybal?</span>
+                <span className="block text-gradient-gold">Florybal Pomerode?</span>
               </h2>
               <p className="font-body text-lg text-gold-200/80 max-w-lg">
                 Uma ação de endomarketing com retorno emocional e institucional.
