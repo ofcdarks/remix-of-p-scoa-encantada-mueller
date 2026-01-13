@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, MessageCircle, Heart, Send, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logoImage from "@/assets/florybal-logo-principal.png";
+import logoImage from "@/assets/florybal-logo-negativo.png";
 import easterBunnyChocolates from "@/assets/easter-bunny-chocolates.jpg";
 
 const FooterSection = () => {
