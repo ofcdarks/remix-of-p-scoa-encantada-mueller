@@ -64,7 +64,7 @@ const PropostaSection = () => {
             >
               <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-gold-50 leading-tight">
                 Feira de Páscoa
-                <span className="block text-gradient-gold">Florybal</span>
+                <span className="block text-gradient-gold">Florybal Pomerode</span>
               </h2>
               <p className="font-body text-lg text-gold-200/80 leading-relaxed max-w-lg">
                 Um evento corporativo desenvolvido com foco em experiência, 

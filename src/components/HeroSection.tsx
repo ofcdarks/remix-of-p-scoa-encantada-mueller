@@ -158,7 +158,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 1 }}
             className="block text-gradient-gold mt-2"
           >
-            Florybal
+            Florybal Pomerode
           </motion.span>
         </motion.h1>
 
