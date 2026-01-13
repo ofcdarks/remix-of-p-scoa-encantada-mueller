@@ -9,6 +9,7 @@ import BeneficiosSection from "@/components/BeneficiosSection";
 import ProximosPassosSection from "@/components/ProximosPassosSection";
 import FooterSection from "@/components/FooterSection";
 import CatalogoSection from "@/components/CatalogoSection";
+import ChatWidget from "@/components/ChatWidget";
 
 const Index = () => {
   return (
@@ -24,6 +25,7 @@ const Index = () => {
       <BeneficiosSection />
       <ProximosPassosSection />
       <FooterSection />
+      <ChatWidget />
     </main>
   );
 };
