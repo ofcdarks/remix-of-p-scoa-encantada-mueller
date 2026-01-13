@@ -81,15 +81,15 @@ const PropostaSection = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-                  className="group p-5 rounded-2xl bg-chocolate-800/50 backdrop-blur-sm border border-gold-400/10 hover:border-gold-400/30 transition-all duration-300"
+                  className="group p-5 rounded-2xl bg-chocolate-800/50 backdrop-blur-sm border border-gold-400/10 hover:border-gold-400/40 hover:bg-chocolate-800/70 transition-all duration-500 hover:-translate-y-1 hover:shadow-lg hover:shadow-gold-500/10"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-gold-500/20 flex items-center justify-center flex-shrink-0 group-hover:bg-gold-500/30 transition-colors">
-                      <feature.icon className="w-5 h-5 text-gold-400" />
+                    <div className="w-10 h-10 rounded-xl bg-gold-500/20 flex items-center justify-center flex-shrink-0 group-hover:bg-gold-500/40 group-hover:scale-110 transition-all duration-300">
+                      <feature.icon className="w-5 h-5 text-gold-400 group-hover:text-gold-300 transition-colors" />
                     </div>
                     <div>
-                      <h3 className="font-display text-base text-gold-100 mb-1">{feature.title}</h3>
-                      <p className="font-body text-sm text-gold-300/60 leading-relaxed">{feature.description}</p>
+                      <h3 className="font-display text-base text-gold-100 mb-1 group-hover:text-gold-50 transition-colors">{feature.title}</h3>
+                      <p className="font-body text-sm text-gold-300/60 leading-relaxed group-hover:text-gold-300/80 transition-colors">{feature.description}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -101,7 +101,7 @@ const PropostaSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="flex items-center gap-4 p-5 rounded-2xl bg-gradient-to-r from-gold-500/10 to-transparent border-l-2 border-gold-500"
+              className="flex items-center gap-4 p-5 rounded-2xl bg-gradient-to-r from-gold-500/15 via-gold-500/10 to-transparent border-l-2 border-gold-500 hover:from-gold-500/25 hover:via-gold-500/15 transition-all duration-500 group"
             >
               <div className="flex-grow">
                 <p className="font-body text-gold-200/90 text-sm leading-relaxed">
@@ -109,7 +109,7 @@ const PropostaSection = () => {
                   elevando o valor percebido do presente.
                 </p>
               </div>
-              <ArrowRight className="w-5 h-5 text-gold-400 flex-shrink-0" />
+              <ArrowRight className="w-5 h-5 text-gold-400 flex-shrink-0 group-hover:translate-x-1 transition-transform duration-300" />
             </motion.div>
           </div>
 
@@ -120,13 +120,13 @@ const PropostaSection = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="relative"
           >
-            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl image-zoom group">
               <img
                 src={easterCorporateEvent}
                 alt="Feira de Páscoa corporativa Florybal"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-chocolate-950/80 via-chocolate-950/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-chocolate-950/80 via-chocolate-950/20 to-transparent group-hover:from-chocolate-950/70 transition-all duration-500" />
               
               {/* Floating bunny image */}
               <motion.div

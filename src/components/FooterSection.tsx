@@ -84,13 +84,13 @@ const FooterSection = () => {
                 href={contact.href}
                 target={contact.label === "Endereço" ? "_blank" : undefined}
                 rel={contact.label === "Endereço" ? "noopener noreferrer" : undefined}
-                className="group flex flex-col items-center text-center p-6 rounded-xl bg-chocolate-800/40 backdrop-blur-sm border border-gold-400/10 hover:border-gold-400/30 transition-all duration-300"
+                className="group flex flex-col items-center text-center p-6 rounded-xl bg-chocolate-800/40 backdrop-blur-sm border border-gold-400/10 hover:border-gold-400/40 hover:bg-chocolate-800/60 transition-all duration-500 hover:-translate-y-1 hover:shadow-lg hover:shadow-gold-500/10"
               >
-                <div className="w-10 h-10 rounded-lg bg-gold-500/10 flex items-center justify-center mb-4 group-hover:bg-gold-500/20 transition-colors">
-                  <contact.icon className="w-5 h-5 text-gold-400" />
+                <div className="w-10 h-10 rounded-lg bg-gold-500/10 flex items-center justify-center mb-4 group-hover:bg-gold-500/30 group-hover:scale-110 transition-all duration-300">
+                  <contact.icon className="w-5 h-5 text-gold-400 group-hover:text-gold-300 transition-colors" />
                 </div>
-                <p className="font-body text-xs text-gold-400/60 uppercase tracking-wider mb-1">{contact.label}</p>
-                <p className="font-body text-[10px] sm:text-xs text-gold-100 leading-relaxed text-center break-words">{contact.value}</p>
+                <p className="font-body text-xs text-gold-400/60 uppercase tracking-wider mb-1 group-hover:text-gold-400/80 transition-colors">{contact.label}</p>
+                <p className="font-body text-[10px] sm:text-xs text-gold-100 leading-relaxed text-center break-words group-hover:text-gold-50 transition-colors">{contact.value}</p>
               </motion.a>
             ))}
           </motion.div>
@@ -165,11 +165,11 @@ const FooterSection = () => {
               🐰🍫 Chocolate de Gramado, agora em Pomerode!
             </p>
             <div className="flex flex-wrap justify-center gap-4 mb-3">
-              <Link to="/politica-privacidade" className="font-body text-xs text-gold-400/50 hover:text-gold-400 transition-colors">
+              <Link to="/politica-privacidade" className="font-body text-xs text-gold-400/50 hover:text-gold-400 transition-colors duration-300 underline-animation">
                 Política de Privacidade
               </Link>
               <span className="text-gold-400/30">•</span>
-              <Link to="/politica-cookies" className="font-body text-xs text-gold-400/50 hover:text-gold-400 transition-colors">
+              <Link to="/politica-cookies" className="font-body text-xs text-gold-400/50 hover:text-gold-400 transition-colors duration-300 underline-animation">
                 Política de Cookies
               </Link>
             </div>

@@ -42,16 +42,16 @@ const ApresentacaoSection = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-5 relative"
+          className="lg:col-span-5 relative"
           >
             {/* Main Image */}
-            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl image-zoom group">
               <img
                 src={easterBunny}
                 alt="Coelho de chocolate artesanal de Páscoa"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-chocolate-950/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-chocolate-950/60 via-chocolate-950/20 to-transparent opacity-70 group-hover:opacity-50 transition-opacity duration-500" />
             </div>
 
             {/* Secondary floating image */}
@@ -61,7 +61,7 @@ const ApresentacaoSection = () => {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="absolute -right-4 lg:-right-12 top-1/4 w-28 lg:w-36"
             >
-              <div className="relative rounded-xl overflow-hidden shadow-2xl border-2 border-gold-400/30">
+              <div className="relative rounded-xl overflow-hidden shadow-2xl border-2 border-gold-400/30 hover:border-gold-400/60 transition-all duration-500 hover:shadow-gold image-zoom">
                 <img 
                   src={easterEggsOpen} 
                   alt="Ovos de Páscoa premium"
@@ -75,10 +75,10 @@ const ApresentacaoSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="absolute -bottom-6 -right-6 lg:-right-10 bg-card rounded-2xl p-6 shadow-elevated border border-border"
+              className="absolute -bottom-6 -right-6 lg:-right-10 bg-card rounded-2xl p-6 shadow-elevated border border-border hover-lift hover-glow"
             >
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-gold-500 to-gold-600 flex items-center justify-center shadow-gold">
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-gold-500 to-gold-600 flex items-center justify-center shadow-gold pulse-glow">
                   <Egg className="w-7 h-7 text-chocolate-950" />
                 </div>
                 <div>
@@ -166,9 +166,9 @@ const ApresentacaoSection = () => {
               ].map((item) => (
                 <div 
                   key={item.label} 
-                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-secondary border border-border"
+                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-secondary border border-border hover:border-gold-400/40 hover:bg-gold-500/10 transition-all duration-300 cursor-default group"
                 >
-                  <item.icon className="w-4 h-4 text-gold-500" />
+                  <item.icon className="w-4 h-4 text-gold-500 group-hover:scale-110 transition-transform duration-300" />
                   <span className="font-body text-sm text-foreground/80">{item.label}</span>
                 </div>
               ))}
