@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { Phone, Mail, MapPin, MessageCircle, Heart, Send, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logoImage from "@/assets/florybal-logo.jpg";
+import easterBunnyChocolates from "@/assets/easter-bunny-chocolates.jpg";
 
 const FooterSection = () => {
   const ref = useRef(null);
@@ -130,6 +131,28 @@ const FooterSection = () => {
           {/* Divider */}
           <div className="w-full h-px bg-gradient-to-r from-transparent via-gold-400/20 to-transparent mb-8" />
 
+          {/* Easter decoration */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.65 }}
+            className="flex justify-center mb-8"
+          >
+            <div className="flex gap-4">
+              <motion.div
+                animate={{ y: [0, -5, 0] }}
+                transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+                className="w-16 h-16 rounded-lg overflow-hidden shadow-soft border border-gold-400/20"
+              >
+                <img
+                  src={easterBunnyChocolates}
+                  alt="Coelhos de chocolate"
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+            </div>
+          </motion.div>
+
           {/* Bottom */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -138,7 +161,7 @@ const FooterSection = () => {
             className="text-center"
           >
             <p className="font-display text-lg text-gold-300/80 mb-3">
-              🍫 Chocolate de Gramado, agora em Pomerode!
+              🐰🍫 Chocolate de Gramado, agora em Pomerode!
             </p>
             <p className="font-body text-xs text-gold-400/30">
               © {new Date().getFullYear()} Florybal Chocolates Caseiros. Proposta exclusiva para sua empresa.
