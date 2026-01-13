@@ -33,7 +33,7 @@ const PropostaSection = () => {
   ];
 
   return (
-    <section className="py-24 lg:py-32 gradient-chocolate relative overflow-hidden" ref={ref}>
+    <section id="proposta" className="py-24 lg:py-32 gradient-chocolate relative overflow-hidden" ref={ref}>
       {/* Subtle gradient orbs */}
       <div className="absolute top-0 left-0 w-[800px] h-[800px] bg-gold-400/5 rounded-full blur-[150px] -translate-x-1/2 -translate-y-1/2" />
       <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-easter/5 rounded-full blur-[120px] translate-x-1/2 translate-y-1/2" />
