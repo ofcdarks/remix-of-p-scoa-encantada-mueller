@@ -12,75 +12,50 @@ interface BeforeInstallPromptEvent extends Event {
 const InstallPWAPrompt = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
-  const [showManualInstall, setShowManualInstall] = useState(false);
 
   useEffect(() => {
-    // Verificar se já foi dispensado ou instalado
     const dismissed = localStorage.getItem("pwaPromptDismissed");
     const installed = localStorage.getItem("pwaInstalled");
-    
-    console.log("PWA prompt status:", { dismissed, installed });
-    
-    if (dismissed || installed) return;
+    const isStandalone = window.matchMedia("(display-mode: standalone)").matches;
 
-    // Capturar o evento beforeinstallprompt
+    if (dismissed || installed || isStandalone) return;
+
+    // Capturar o evento beforeinstallprompt (só funciona em site publicado)
     const handleBeforeInstall = (e: Event) => {
       e.preventDefault();
-      console.log("beforeinstallprompt event captured");
       setDeferredPrompt(e as BeforeInstallPromptEvent);
     };
 
     window.addEventListener("beforeinstallprompt", handleBeforeInstall);
 
-    // Verificar se já está instalado
     const handleAppInstalled = () => {
       localStorage.setItem("pwaInstalled", "true");
       setIsVisible(false);
     };
-    
+
     window.addEventListener("appinstalled", handleAppInstalled);
 
+    // Mostrar após 5 segundos
+    const timer = setTimeout(() => setIsVisible(true), 5000);
+
     return () => {
+      clearTimeout(timer);
       window.removeEventListener("beforeinstallprompt", handleBeforeInstall);
       window.removeEventListener("appinstalled", handleAppInstalled);
     };
   }, []);
 
-  // Mostrar após delay (funciona para iOS e quando beforeinstallprompt não dispara)
-  useEffect(() => {
-    const dismissed = localStorage.getItem("pwaPromptDismissed");
-    const installed = localStorage.getItem("pwaInstalled");
-    const isStandalone = window.matchMedia("(display-mode: standalone)").matches;
-    
-    console.log("PWA check:", { dismissed, installed, isStandalone });
-    
-    if (dismissed || installed || isStandalone) return;
-
-    const timer = setTimeout(() => {
-      console.log("Showing PWA prompt");
-      setIsVisible(true);
-    }, 5000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   const handleInstall = async () => {
-    // Em muitos casos (ex: desktop, já instalado, critérios PWA não atendidos),
-    // o evento beforeinstallprompt não existe — então mostramos instruções manuais.
-    if (!deferredPrompt) {
-      setShowManualInstall(true);
-      return;
+    if (deferredPrompt) {
+      await deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === "accepted") {
+        localStorage.setItem("pwaInstalled", "true");
+      }
+      setDeferredPrompt(null);
+      setIsVisible(false);
     }
-
-    await deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
-
-    if (outcome === "accepted") {
-      localStorage.setItem("pwaInstalled", "true");
-    }
-
-    setDeferredPrompt(null);
-    setIsVisible(false);
+    // Se não tem deferredPrompt, o botão já mostra "Entendi" e fecha
   };
 
   const handleDismiss = () => {
@@ -89,6 +64,7 @@ const InstallPWAPrompt = () => {
   };
 
   const isIOS = typeof navigator !== "undefined" && /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const isAndroid = typeof navigator !== "undefined" && /Android/.test(navigator.userAgent);
 
   return (
     <AnimatePresence>
@@ -102,34 +78,34 @@ const InstallPWAPrompt = () => {
             onClick={handleDismiss}
             className="fixed inset-0 bg-chocolate-950/80 backdrop-blur-sm z-[200]"
           />
-          
+
           {/* Modal */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[201] w-[92%] max-w-xs sm:max-w-sm"
+            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[201] w-[90%] max-w-[280px]"
           >
-            <div className="bg-gradient-to-br from-chocolate-800 via-chocolate-900 to-chocolate-950 border border-gold-500/40 rounded-2xl shadow-2xl overflow-hidden">
+            <div className="bg-gradient-to-br from-chocolate-800 via-chocolate-900 to-chocolate-950 border border-gold-500/40 rounded-xl shadow-2xl overflow-hidden">
               {/* Gold accent line */}
-              <div className="h-1 bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600" />
+              <div className="h-0.5 bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600" />
 
               {/* Close button */}
               <button
                 onClick={handleDismiss}
-                className="absolute top-3 right-3 w-7 h-7 rounded-full bg-chocolate-700/50 hover:bg-chocolate-600 flex items-center justify-center text-gold-300/70 hover:text-gold-200 transition-colors z-10"
+                className="absolute top-2 right-2 w-6 h-6 rounded-full bg-chocolate-700/50 hover:bg-chocolate-600 flex items-center justify-center text-gold-300/70 hover:text-gold-200 transition-colors z-10"
                 aria-label="Fechar"
               >
-                <X className="w-4 h-4" />
+                <X className="w-3 h-3" />
               </button>
 
-              <div className="p-4 sm:p-5 text-center">
+              <div className="p-4 text-center">
                 {/* Logo */}
                 <img
                   src={logoLettering}
                   alt="Florybal"
-                  className="h-6 sm:h-7 mx-auto mb-3 object-contain"
+                  className="h-5 mx-auto mb-2 object-contain"
                   loading="lazy"
                 />
 
@@ -138,61 +114,60 @@ const InstallPWAPrompt = () => {
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.1, type: "spring", damping: 15 }}
-                  className="w-12 h-12 mx-auto mb-3 rounded-xl bg-gradient-to-br from-gold-500/30 to-gold-600/20 border border-gold-400/40 flex items-center justify-center shadow-gold"
+                  className="w-10 h-10 mx-auto mb-2 rounded-lg bg-gradient-to-br from-gold-500/30 to-gold-600/20 border border-gold-400/40 flex items-center justify-center"
                 >
-                  <Smartphone className="w-6 h-6 text-gold-400" />
+                  <Smartphone className="w-5 h-5 text-gold-400" />
                 </motion.div>
 
                 {/* Title */}
-                <h2 className="font-display text-lg sm:text-xl text-gold-100 mb-2">
-                  Instale nosso App
+                <h2 className="font-display text-base text-gold-100 mb-1">
+                  Adicione à tela inicial
                 </h2>
 
-                {/* Description */}
-                <p className="text-gold-200/80 text-xs sm:text-sm mb-3 leading-relaxed">
-                  Acesso rápido à <span className="text-gold-300 font-medium">Feira de Páscoa</span> na sua tela inicial!
-                </p>
-
-                {/* iOS Instructions */}
-                {isIOS ? (
-                  <div className="bg-chocolate-700/30 rounded-lg p-3 mb-3 border border-gold-500/20">
-                    <p className="text-gold-200/90 text-xs">
-                      Toque em <span className="text-gold-300 font-medium">Compartilhar</span> →{" "}
-                      <span className="text-gold-300 font-medium">&quot;Adicionar à Tela de Início&quot;</span>
+                {/* Instructions based on device */}
+                <div className="bg-chocolate-700/30 rounded-lg p-2.5 mb-3 border border-gold-500/20">
+                  {isIOS ? (
+                    <p className="text-gold-200/90 text-[11px] leading-relaxed">
+                      Toque em <span className="text-gold-300 font-medium">Compartilhar</span> (📤) →{" "}
+                      <span className="text-gold-300 font-medium">"Adicionar à Tela de Início"</span>
                     </p>
-                  </div>
-                ) : null}
-
-                {/* Android / Desktop manual instructions */}
-                {!isIOS && (showManualInstall || !deferredPrompt) ? (
-                  <div className="bg-chocolate-700/30 rounded-lg p-3 mb-3 border border-gold-500/20 text-left">
-                    <div className="flex items-start gap-2">
-                      <div className="mt-0.5 text-gold-300/80">
-                        <Info className="w-4 h-4" />
-                      </div>
-                      <p className="text-gold-200/90 text-xs leading-relaxed">
-                        Se o botão <span className="text-gold-300 font-medium">Instalar</span> não abrir a janela do sistema, use o menu do navegador (⋮) e selecione{" "}
-                        <span className="text-gold-300 font-medium">&quot;Instalar app&quot;</span> / <span className="text-gold-300 font-medium">&quot;Adicionar à tela inicial&quot;</span>.
-                      </p>
-                    </div>
-                  </div>
-                ) : null}
+                  ) : isAndroid ? (
+                    <p className="text-gold-200/90 text-[11px] leading-relaxed">
+                      Toque no menu <span className="text-gold-300 font-medium">⋮</span> →{" "}
+                      <span className="text-gold-300 font-medium">"Adicionar à tela inicial"</span>
+                    </p>
+                  ) : (
+                    <p className="text-gold-200/90 text-[11px] leading-relaxed">
+                      Clique no menu <span className="text-gold-300 font-medium">⋮</span> ou ícone de instalação na barra de endereço →{" "}
+                      <span className="text-gold-300 font-medium">"Instalar"</span>
+                    </p>
+                  )}
+                </div>
 
                 {/* Buttons */}
-                <div className="flex flex-col gap-2">
-                  {!isIOS && (
+                <div className="flex flex-col gap-1.5">
+                  {deferredPrompt ? (
                     <Button
                       onClick={handleInstall}
-                      className="w-full bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 text-chocolate-950 font-bold text-sm py-4 rounded-xl shadow-gold hover:shadow-[0_0_25px_hsl(38_70%_50%/0.4)] hover:scale-[1.02] transition-all"
+                      size="sm"
+                      className="w-full bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 text-chocolate-950 font-bold text-xs py-2.5 rounded-lg shadow-gold hover:scale-[1.02] transition-all"
                     >
-                      <Download className="w-4 h-4 mr-2" />
-                      {deferredPrompt ? "Instalar" : "Como instalar"}
+                      <Download className="w-3.5 h-3.5 mr-1.5" />
+                      Instalar agora
+                    </Button>
+                  ) : (
+                    <Button
+                      onClick={handleDismiss}
+                      size="sm"
+                      className="w-full bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 text-chocolate-950 font-bold text-xs py-2.5 rounded-lg shadow-gold hover:scale-[1.02] transition-all"
+                    >
+                      Entendi
                     </Button>
                   )}
 
                   <button
                     onClick={handleDismiss}
-                    className="text-gold-400/50 hover:text-gold-300 text-xs transition-colors py-1"
+                    className="text-gold-400/50 hover:text-gold-300 text-[10px] transition-colors"
                   >
                     Agora não
                   </button>
