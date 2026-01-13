@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import chocolatesImage from "@/assets/coracoes-trufados.jpg";
+import easterBunny from "@/assets/easter-bunny-chocolates.jpg";
+import easterEggsOpen from "@/assets/easter-eggs-open.jpg";
 import logoImage from "@/assets/selo-loja-autorizada.png";
-import { Award, Heart, Star, CheckCircle } from "lucide-react";
+import { Award, Heart, Star, CheckCircle, Egg } from "lucide-react";
 
 const ApresentacaoSection = () => {
   const ref = useRef(null);
@@ -36,21 +37,38 @@ const ApresentacaoSection = () => {
 
         {/* Content Grid - Asymmetric for visual interest */}
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center max-w-7xl mx-auto">
-          {/* Image - Takes 5 columns */}
+          {/* Image Grid - Takes 5 columns */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="lg:col-span-5 relative"
           >
+            {/* Main Image */}
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
               <img
-                src={chocolatesImage}
-                alt="Chocolates Florybal artesanais"
+                src={easterBunny}
+                alt="Coelho de chocolate artesanal de Páscoa"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-chocolate-950/40 to-transparent" />
             </div>
+
+            {/* Secondary floating image */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="absolute -right-4 lg:-right-12 top-1/4 w-28 lg:w-36"
+            >
+              <div className="relative rounded-xl overflow-hidden shadow-2xl border-2 border-gold-400/30">
+                <img 
+                  src={easterEggsOpen} 
+                  alt="Ovos de Páscoa premium"
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            </motion.div>
             
             {/* Floating stats card */}
             <motion.div
@@ -61,7 +79,7 @@ const ApresentacaoSection = () => {
             >
               <div className="flex items-center gap-4">
                 <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-gold-500 to-gold-600 flex items-center justify-center shadow-gold">
-                  <Award className="w-7 h-7 text-chocolate-950" />
+                  <Egg className="w-7 h-7 text-chocolate-950" />
                 </div>
                 <div>
                   <p className="font-display text-3xl text-gradient-gold font-semibold">+30</p>
