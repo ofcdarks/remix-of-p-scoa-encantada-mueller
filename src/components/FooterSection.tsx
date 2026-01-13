@@ -56,7 +56,7 @@ const FooterSection = () => {
             className="text-center mb-12"
           >
             {/* Logo */}
-            <img src={logoImage} alt="Florybal Logo" className="h-24 md:h-28 object-contain mx-auto mb-6" />
+            <img src={logoImage} alt="Florybal Logo" className="h-32 md:h-40 object-contain mx-auto mb-6" />
             <div className="inline-flex items-center gap-3 mb-4">
               <Heart className="w-5 h-5 text-easter fill-easter" />
               <span className="font-body text-gold-300/80 tracking-wide">Com carinho,</span>
@@ -142,7 +142,7 @@ const FooterSection = () => {
               <motion.div
                 animate={{ y: [0, -5, 0] }}
                 transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-                className="w-16 h-16 rounded-lg overflow-hidden shadow-soft border border-gold-400/20"
+                className="w-16 h-16 rounded-lg overflow-hidden"
               >
                 <img
                   src={easterBunnyChocolates}
