@@ -15,7 +15,8 @@ const HeroSection = () => {
     offset: ["start start", "end start"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   const scrollToContent = () => {
@@ -26,11 +27,11 @@ const HeroSection = () => {
   return (
     <section ref={containerRef} className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
       {/* Parallax Background Image */}
-      <motion.div style={{ y }} className="absolute inset-0">
+      <motion.div style={{ y, scale }} className="absolute inset-0 will-change-transform">
         <img
           src={heroImage}
           alt="Chocolates Florybal - Páscoa Premium"
-          className="w-full h-[120%] object-cover"
+          className="w-full h-[130%] object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-chocolate-950/80 via-chocolate-950/60 to-chocolate-950/95" />
         {/* Grain texture overlay for premium feel */}
