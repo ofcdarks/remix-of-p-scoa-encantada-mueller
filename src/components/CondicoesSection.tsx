@@ -17,9 +17,9 @@ const CondicoesSection = () => {
     },
     {
       icon: FileText,
-      title: "Parcelamento Empresarial",
-      highlight: "3x sem juros",
-      description: "Até 3x no boleto para compras diretas da empresa",
+      title: "Boleto Empresarial",
+      highlight: "30 dias",
+      description: "Boleto para 30 dias em compras diretas da empresa",
       benefits: ["Flexibilidade", "Planejamento", "Sem entrada"]
     },
     {
