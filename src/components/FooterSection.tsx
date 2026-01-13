@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, MessageCircle, Heart, Send, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logoImage from "@/assets/florybal-logo-new.png";
@@ -163,6 +164,15 @@ const FooterSection = () => {
             <p className="font-display text-lg text-gold-300/80 mb-3">
               🐰🍫 Chocolate de Gramado, agora em Pomerode!
             </p>
+            <div className="flex flex-wrap justify-center gap-4 mb-3">
+              <Link to="/politica-privacidade" className="font-body text-xs text-gold-400/50 hover:text-gold-400 transition-colors">
+                Política de Privacidade
+              </Link>
+              <span className="text-gold-400/30">•</span>
+              <Link to="/politica-cookies" className="font-body text-xs text-gold-400/50 hover:text-gold-400 transition-colors">
+                Política de Cookies
+              </Link>
+            </div>
             <p className="font-body text-xs text-gold-400/30">
               © {new Date().getFullYear()} Florybal Chocolates Caseiros. Proposta exclusiva para sua empresa.
             </p>
