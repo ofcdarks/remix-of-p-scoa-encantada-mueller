@@ -127,7 +127,7 @@ const HeroSection = () => {
           className="flex flex-wrap justify-center gap-4 mb-4"
         >
           {/* Logo */}
-          <img src={logoImage} alt="Florybal Logo" className="h-48 md:h-64 lg:h-80 object-contain drop-shadow-lg" />
+          <img src={logoImage} alt="Florybal Logo" className="h-24 md:h-32 lg:h-40 object-contain drop-shadow-lg" />
         </motion.div>
 
         {/* Exclusive Badge */}
