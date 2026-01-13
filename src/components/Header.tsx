@@ -48,7 +48,7 @@ const Header = () => {
             <img
               src={logoImage}
               alt="Florybal Logo"
-              className="h-7 sm:h-10 md:h-12 object-contain"
+              className="h-7 sm:h-8 md:h-9 lg:h-12 object-contain"
             />
           </button>
 
