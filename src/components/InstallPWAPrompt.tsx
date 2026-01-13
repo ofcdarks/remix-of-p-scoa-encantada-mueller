@@ -73,15 +73,16 @@ const InstallPWAPrompt = () => {
             className="fixed inset-0 bg-chocolate-950/80 backdrop-blur-sm z-[200]"
           />
 
-          {/* Modal - centralizado na parte inferior */}
+          {/* Modal - centralizado na parte inferior (compacto no mobile) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 50 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 50 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[201] w-[92%] max-w-[340px] sm:max-w-[380px]"
+            className="fixed inset-x-0 bottom-[calc(1rem+env(safe-area-inset-bottom))] z-[201] px-4"
           >
-            <div className="bg-gradient-to-br from-chocolate-800 via-chocolate-900 to-chocolate-950 border border-gold-500/40 rounded-xl shadow-2xl overflow-hidden">
+            <div className="mx-auto w-full max-w-[300px] sm:max-w-[360px]">
+              <div className="bg-gradient-to-br from-chocolate-800 via-chocolate-900 to-chocolate-950 border border-gold-500/40 rounded-xl shadow-2xl overflow-hidden">
               {/* Gold accent line */}
               <div className="h-0.5 bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600" />
 
@@ -94,12 +95,12 @@ const InstallPWAPrompt = () => {
                 <X className="w-3 h-3" />
               </button>
 
-              <div className="p-4 text-center">
+              <div className="p-3 sm:p-4 text-center">
                 {/* Logo */}
                 <img
                   src={logoLettering}
                   alt="Florybal"
-                  className="h-5 mx-auto mb-2 object-contain"
+                  className="h-4 sm:h-5 mx-auto mb-2 object-contain"
                   loading="lazy"
                 />
 
@@ -108,13 +109,13 @@ const InstallPWAPrompt = () => {
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.1, type: "spring", damping: 15 }}
-                  className="w-10 h-10 mx-auto mb-2 rounded-lg bg-gradient-to-br from-gold-500/30 to-gold-600/20 border border-gold-400/40 flex items-center justify-center"
+                  className="w-9 h-9 mx-auto mb-2 rounded-lg bg-gradient-to-br from-gold-500/30 to-gold-600/20 border border-gold-400/40 flex items-center justify-center"
                 >
-                  <Smartphone className="w-5 h-5 text-gold-400" />
+                  <Smartphone className="w-4 h-4 text-gold-400" />
                 </motion.div>
 
                 {/* Title */}
-                <h2 className="font-display text-base text-gold-100 mb-1">
+                <h2 className="font-display text-sm text-gold-100 mb-1">
                   Instale nosso App
                 </h2>
 
@@ -128,7 +129,7 @@ const InstallPWAPrompt = () => {
                   <Button
                     onClick={handleInstall}
                     size="sm"
-                    className="w-full bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 text-chocolate-950 font-bold text-xs py-2.5 rounded-lg shadow-gold hover:scale-[1.02] transition-all"
+                    className="w-full bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 text-chocolate-950 font-bold text-xs py-2 rounded-lg shadow-gold hover:scale-[1.02] transition-all"
                   >
                     <Download className="w-3.5 h-3.5 mr-1.5" />
                     Instalar
@@ -143,6 +144,7 @@ const InstallPWAPrompt = () => {
                 </div>
               </div>
             </div>
+          </div>
           </motion.div>
         </>
       )}

@@ -43,17 +43,17 @@ const CookieConsent = () => {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ type: "spring", damping: 25, stiffness: 200 }}
-          className="fixed bottom-0 left-0 right-0 z-[100] p-4 md:p-6"
+          className="fixed inset-x-0 bottom-0 z-[100] px-3 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] md:p-6"
         >
-          <div className="max-w-2xl mx-auto bg-gradient-to-br from-chocolate-900 via-chocolate-800 to-chocolate-900 border border-gold-500/30 rounded-xl shadow-2xl backdrop-blur-lg overflow-hidden">
+          <div className="max-w-md sm:max-w-lg md:max-w-2xl mx-auto bg-gradient-to-br from-chocolate-900 via-chocolate-800 to-chocolate-900 border border-gold-500/30 rounded-xl shadow-2xl backdrop-blur-lg overflow-hidden">
             {/* Gold accent line */}
             <div className="h-0.5 bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600" />
             
-            <div className="p-4">
+            <div className="p-3 sm:p-4">
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
                 {/* Icon */}
-                <div className="flex-shrink-0 w-9 h-9 rounded-full bg-gold-500/20 border border-gold-400/30 flex items-center justify-center">
-                  <Cookie className="w-4 h-4 text-gold-400" />
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gold-500/20 border border-gold-400/30 flex items-center justify-center">
+                  <Cookie className="w-3.5 h-3.5 text-gold-400" />
                 </div>
                 
                 {/* Content */}
