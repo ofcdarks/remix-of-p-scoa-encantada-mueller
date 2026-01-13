@@ -3,7 +3,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Phone, Mail, MapPin, MessageCircle, Heart, Send, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logoImage from "@/assets/florybal-logo.jpg";
+import logoImage from "@/assets/florybal-logo-new.png";
 import easterBunnyChocolates from "@/assets/easter-bunny-chocolates.jpg";
 
 const FooterSection = () => {
