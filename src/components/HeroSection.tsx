@@ -4,7 +4,7 @@ import heroImage from "@/assets/easter-hero-eggs.jpg";
 import easterBunny from "@/assets/easter-bunny-chocolates.jpg";
 import easterTruffles from "@/assets/easter-truffles.jpg";
 import easterEggsOpen from "@/assets/easter-eggs-open.jpg";
-import logoImage from "@/assets/florybal-logo-new.png";
+import logoImage from "@/assets/florybal-logo-principal.png";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Sparkles, Egg } from "lucide-react";
 
