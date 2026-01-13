@@ -57,18 +57,21 @@ const ChatWidget = () => {
         className={`fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-gradient-to-br from-chocolate-600 via-chocolate-700 to-chocolate-800 shadow-xl flex items-center justify-center group transition-all duration-500 ${isOpen ? 'hidden' : ''}`}
         aria-label="Abrir chat"
       >
-        {/* Soft glow ring */}
-        <span className="absolute inset-[-3px] rounded-full bg-gold-400/10 animate-[pulse_3s_ease-in-out_infinite]" />
-        <span className="absolute inset-[-6px] rounded-full border border-gold-400/5 animate-[pulse_4s_ease-in-out_infinite]" style={{ animationDelay: '1s' }} />
+        {/* Soft pulse rings */}
+        <span className="absolute inset-0 rounded-full bg-gold-400/20 animate-[pulse_2.5s_ease-in-out_infinite]" />
+        <span className="absolute inset-[-5px] rounded-full bg-gold-400/10 animate-[pulse_3s_ease-in-out_infinite]" style={{ animationDelay: '0.5s' }} />
+        <span className="absolute inset-[-10px] rounded-full border border-gold-400/10 animate-[pulse_3.5s_ease-in-out_infinite]" style={{ animationDelay: '1s' }} />
         
         {/* Inner glow on hover */}
-        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-gold-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-gold-400/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         
         {/* Icon */}
         <MessageCircle className="w-7 h-7 text-gold-200 group-hover:text-gold-100 relative z-10 transition-all duration-300 group-hover:scale-110" />
         
-        {/* Notification dot - subtle */}
-        <span className="absolute top-0 right-0 w-3.5 h-3.5 bg-easter rounded-full border-2 border-chocolate-700 shadow-md" />
+        {/* Notification dot */}
+        <span className="absolute top-0 right-0 w-3.5 h-3.5 bg-easter rounded-full border-2 border-chocolate-700 shadow-md">
+          <span className="absolute inset-0 rounded-full bg-easter animate-[ping_2s_ease-in-out_infinite] opacity-50" />
+        </span>
       </motion.button>
 
       {/* Chat Window */}
