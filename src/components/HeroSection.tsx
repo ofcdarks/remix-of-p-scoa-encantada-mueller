@@ -177,7 +177,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1 }}
-          className="font-display text-xl md:text-2xl text-gold-400 mb-12"
+          className="font-display text-xl md:text-2xl text-gold-400 mb-10"
         >
           Para a sua <span className="font-semibold">Empresa</span>
         </motion.p>
@@ -187,7 +187,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
         >
           <Button variant="hero" size="lg" onClick={scrollToContent} className="group min-w-[220px]">
             <span>Conhecer a Proposta</span>
@@ -205,30 +205,27 @@ const HeroSection = () => {
             </a>
           </Button>
         </motion.div>
+
+        {/* Scroll Indicator - Integrated */}
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 2 }}
+          onClick={scrollToContent}
+          className="flex flex-col items-center gap-1 text-gold-400/40 hover:text-gold-400 transition-colors group"
+          aria-label="Rolar para baixo"
+        >
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+          >
+            <ChevronDown className="w-5 h-5" />
+          </motion.div>
+        </motion.button>
       </motion.div>
 
-      {/* Scroll Indicator - More subtle */}
-      <motion.button
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 2 }}
-        onClick={scrollToContent}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gold-400/50 hover:text-gold-400 transition-colors group"
-        aria-label="Rolar para baixo"
-      >
-        <span className="text-xs font-body tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity">
-          Explorar
-        </span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-        >
-          <ChevronDown className="w-6 h-6" />
-        </motion.div>
-      </motion.button>
-
       {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </section>
   );
 };
