@@ -39,7 +39,7 @@ const FooterSection = () => {
   ];
 
   return (
-    <footer id="contato" className="py-20 lg:py-24 gradient-chocolate relative overflow-hidden" ref={ref}>
+    <footer id="contato" className="py-12 lg:py-16 gradient-chocolate relative overflow-hidden" ref={ref}>
       {/* Top accent line */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600" />
 
@@ -54,11 +54,11 @@ const FooterSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="text-center mb-12"
+            className="text-center mb-8"
           >
             {/* Logo */}
-            <img src={logoImage} alt="Florybal Logo" className="h-32 md:h-40 object-contain mx-auto mb-6" />
-            <div className="inline-flex items-center gap-3 mb-4">
+            <img src={logoImage} alt="Florybal Logo" className="h-44 md:h-56 object-contain mx-auto mb-4" />
+            <div className="inline-flex items-center gap-3 mb-3">
               <Heart className="w-5 h-5 text-easter fill-easter" />
               <span className="font-body text-gold-300/80 tracking-wide">Com carinho,</span>
             </div>
