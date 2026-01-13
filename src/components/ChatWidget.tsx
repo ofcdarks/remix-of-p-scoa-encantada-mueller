@@ -54,24 +54,21 @@ const ChatWidget = () => {
         animate={{ scale: 1 }}
         transition={{ delay: 1, type: "spring", stiffness: 200 }}
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-gradient-to-br from-chocolate-600 via-chocolate-700 to-chocolate-800 shadow-xl flex items-center justify-center group transition-all duration-300 ${isOpen ? 'hidden' : ''}`}
+        className={`fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-gradient-to-br from-chocolate-600 via-chocolate-700 to-chocolate-800 shadow-xl flex items-center justify-center group transition-all duration-500 ${isOpen ? 'hidden' : ''}`}
         aria-label="Abrir chat"
       >
-        {/* Pulse rings */}
-        <span className="absolute inset-0 rounded-full bg-gold-400/30 animate-ping" />
-        <span className="absolute inset-[-4px] rounded-full bg-gold-400/20 animate-pulse" />
-        <span className="absolute inset-[-8px] rounded-full border-2 border-gold-400/10 animate-pulse" style={{ animationDelay: '0.5s' }} />
+        {/* Soft glow ring */}
+        <span className="absolute inset-[-3px] rounded-full bg-gold-400/10 animate-[pulse_3s_ease-in-out_infinite]" />
+        <span className="absolute inset-[-6px] rounded-full border border-gold-400/5 animate-[pulse_4s_ease-in-out_infinite]" style={{ animationDelay: '1s' }} />
         
         {/* Inner glow on hover */}
-        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-gold-400/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-gold-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         
         {/* Icon */}
-        <MessageCircle className="w-7 h-7 text-gold-200 group-hover:text-gold-100 transition-colors relative z-10 group-hover:scale-110 transition-transform duration-300" />
+        <MessageCircle className="w-7 h-7 text-gold-200 group-hover:text-gold-100 relative z-10 transition-all duration-300 group-hover:scale-110" />
         
-        {/* Notification dot */}
-        <span className="absolute top-0 right-0 w-4 h-4 bg-easter rounded-full border-2 border-chocolate-700 shadow-lg">
-          <span className="absolute inset-0 rounded-full bg-easter animate-ping opacity-75" />
-        </span>
+        {/* Notification dot - subtle */}
+        <span className="absolute top-0 right-0 w-3.5 h-3.5 bg-easter rounded-full border-2 border-chocolate-700 shadow-md" />
       </motion.button>
 
       {/* Chat Window */}
