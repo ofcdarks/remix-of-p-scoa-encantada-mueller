@@ -48,19 +48,30 @@ const ChatWidget = () => {
 
   return (
     <>
-      {/* Chat Button */}
+      {/* Chat Button with Pulse Animation */}
       <motion.button
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ delay: 1, type: "spring", stiffness: 200 }}
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-gradient-to-br from-chocolate-700 via-chocolate-800 to-chocolate-900 shadow-xl flex items-center justify-center group hover:shadow-2xl hover:shadow-gold-500/20 transition-all duration-300 ${isOpen ? 'hidden' : ''}`}
+        className={`fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-gradient-to-br from-chocolate-600 via-chocolate-700 to-chocolate-800 shadow-xl flex items-center justify-center group transition-all duration-300 ${isOpen ? 'hidden' : ''}`}
         aria-label="Abrir chat"
       >
-        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-gold-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-        <MessageCircle className="w-7 h-7 text-gold-300 group-hover:text-gold-200 transition-colors" />
+        {/* Pulse rings */}
+        <span className="absolute inset-0 rounded-full bg-gold-400/30 animate-ping" />
+        <span className="absolute inset-[-4px] rounded-full bg-gold-400/20 animate-pulse" />
+        <span className="absolute inset-[-8px] rounded-full border-2 border-gold-400/10 animate-pulse" style={{ animationDelay: '0.5s' }} />
+        
+        {/* Inner glow on hover */}
+        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-gold-400/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        
+        {/* Icon */}
+        <MessageCircle className="w-7 h-7 text-gold-200 group-hover:text-gold-100 transition-colors relative z-10 group-hover:scale-110 transition-transform duration-300" />
+        
         {/* Notification dot */}
-        <span className="absolute top-0 right-0 w-4 h-4 bg-easter rounded-full border-2 border-chocolate-800 animate-pulse" />
+        <span className="absolute top-0 right-0 w-4 h-4 bg-easter rounded-full border-2 border-chocolate-700 shadow-lg">
+          <span className="absolute inset-0 rounded-full bg-easter animate-ping opacity-75" />
+        </span>
       </motion.button>
 
       {/* Chat Window */}
@@ -71,25 +82,25 @@ const ChatWidget = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="fixed bottom-6 right-6 z-50 w-[360px] max-w-[calc(100vw-48px)] rounded-2xl overflow-hidden shadow-2xl shadow-chocolate-950/50"
+            className="fixed bottom-6 right-6 z-50 w-[380px] max-w-[calc(100vw-48px)] rounded-2xl overflow-hidden shadow-2xl shadow-chocolate-950/60 border border-gold-400/10"
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-chocolate-800 via-chocolate-700 to-chocolate-800 p-4 flex items-center gap-3">
+            <div className="bg-gradient-to-r from-chocolate-700 via-chocolate-600 to-chocolate-700 p-5 flex items-center gap-3 border-b border-gold-400/20">
               {(selectedFaq || showContact) && (
                 <button 
                   onClick={handleBack}
-                  className="p-1 rounded-lg hover:bg-chocolate-600/50 transition-colors"
+                  className="p-1.5 rounded-lg hover:bg-chocolate-500/50 transition-all duration-200 hover:scale-105"
                 >
-                  <ChevronLeft className="w-5 h-5 text-gold-300" />
+                  <ChevronLeft className="w-5 h-5 text-gold-200" />
                 </button>
               )}
               <div className="flex-1">
-                <h3 className="font-display text-lg text-gold-100">
-                  {showContact ? "Falar com a equipe" : selectedFaq ? "Resposta" : "🍫 Olá! Como podemos ajudar?"}
+                <h3 className="font-display text-xl text-gold-50">
+                  {showContact ? "Falar com a equipe" : selectedFaq ? "Resposta" : "🍫 Olá!"}
                 </h3>
-                {!selectedFaq && !showContact && (
-                  <p className="text-xs text-gold-400/70">Florybal Pomerode</p>
-                )}
+                <p className="text-xs text-gold-300/70 mt-0.5">
+                  {showContact ? "Escolha como prefere contato" : selectedFaq ? "Veja a resposta abaixo" : "Como podemos ajudar?"}
+                </p>
               </div>
               <button 
                 onClick={() => {
@@ -97,14 +108,14 @@ const ChatWidget = () => {
                   setSelectedFaq(null);
                   setShowContact(false);
                 }}
-                className="p-2 rounded-lg hover:bg-chocolate-600/50 transition-colors"
+                className="p-2 rounded-lg hover:bg-chocolate-500/50 transition-all duration-200 hover:scale-105 hover:rotate-90"
               >
-                <X className="w-5 h-5 text-gold-300" />
+                <X className="w-5 h-5 text-gold-200" />
               </button>
             </div>
 
             {/* Content */}
-            <div className="bg-gradient-to-b from-chocolate-900 to-chocolate-950 p-4 max-h-[400px] overflow-y-auto">
+            <div className="bg-gradient-to-b from-chocolate-800 to-chocolate-900 p-5 min-h-[300px] max-h-[420px] overflow-y-auto">
               <AnimatePresence mode="wait">
                 {showContact ? (
                   <motion.div
@@ -114,45 +125,43 @@ const ChatWidget = () => {
                     exit={{ opacity: 0, x: -20 }}
                     className="space-y-4"
                   >
-                    <div className="bg-chocolate-800/50 rounded-xl p-4 border border-gold-400/10">
-                      <p className="text-gold-200/90 text-sm mb-4">
-                        Nossa equipe está pronta para atender você! Escolha como prefere entrar em contato:
-                      </p>
-                      
-                      <div className="space-y-3">
-                        <a
-                          href={whatsappUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-3 p-3 rounded-lg bg-green-600/20 border border-green-500/30 hover:bg-green-600/30 transition-colors group"
-                        >
-                          <div className="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center">
-                            <MessageCircle className="w-5 h-5 text-white" />
-                          </div>
-                          <div>
-                            <p className="text-gold-100 font-medium text-sm">WhatsApp</p>
-                            <p className="text-gold-400/70 text-xs">(47) 99919-1829</p>
-                          </div>
-                          <Send className="w-4 h-4 text-green-400 ml-auto group-hover:translate-x-1 transition-transform" />
-                        </a>
+                    <p className="text-gold-200/80 text-sm text-center mb-6">
+                      Nossa equipe está pronta para atender você!
+                    </p>
+                    
+                    <div className="space-y-3">
+                      <a
+                        href={whatsappUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-4 p-4 rounded-xl bg-green-600/20 border border-green-500/30 hover:bg-green-600/30 hover:border-green-400/50 transition-all duration-300 group hover:-translate-y-0.5 hover:shadow-lg hover:shadow-green-500/10"
+                      >
+                        <div className="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                          <MessageCircle className="w-6 h-6 text-white" />
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-gold-50 font-semibold">WhatsApp</p>
+                          <p className="text-gold-300/70 text-sm">(47) 99919-1829</p>
+                        </div>
+                        <Send className="w-5 h-5 text-green-400 group-hover:translate-x-1 transition-transform" />
+                      </a>
 
-                        <a
-                          href="tel:+5547999191829"
-                          className="flex items-center gap-3 p-3 rounded-lg bg-gold-500/10 border border-gold-400/20 hover:bg-gold-500/20 transition-colors group"
-                        >
-                          <div className="w-10 h-10 rounded-full bg-gold-500/30 flex items-center justify-center">
-                            <Phone className="w-5 h-5 text-gold-300" />
-                          </div>
-                          <div>
-                            <p className="text-gold-100 font-medium text-sm">Ligar agora</p>
-                            <p className="text-gold-400/70 text-xs">(47) 99919-1829</p>
-                          </div>
-                        </a>
-                      </div>
+                      <a
+                        href="tel:+5547999191829"
+                        className="flex items-center gap-4 p-4 rounded-xl bg-gold-500/10 border border-gold-400/20 hover:bg-gold-500/20 hover:border-gold-400/40 transition-all duration-300 group hover:-translate-y-0.5 hover:shadow-lg hover:shadow-gold-500/10"
+                      >
+                        <div className="w-12 h-12 rounded-full bg-gold-500/30 flex items-center justify-center group-hover:scale-110 transition-transform">
+                          <Phone className="w-6 h-6 text-gold-200" />
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-gold-50 font-semibold">Ligar agora</p>
+                          <p className="text-gold-300/70 text-sm">(47) 99919-1829</p>
+                        </div>
+                      </a>
                     </div>
 
-                    <p className="text-center text-gold-400/50 text-xs">
-                      Resposta em até 24 horas úteis
+                    <p className="text-center text-gold-400/50 text-xs pt-4">
+                      ⏱️ Resposta em até 24 horas úteis
                     </p>
                   </motion.div>
                 ) : selectedFaq ? (
@@ -161,23 +170,33 @@ const ChatWidget = () => {
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
-                    className="space-y-3"
+                    className="space-y-4"
                   >
-                    <div className="bg-gold-500/10 rounded-xl p-3 border border-gold-400/20">
-                      <p className="text-gold-200 text-sm font-medium">{selectedFaq.question}</p>
+                    {/* Question bubble */}
+                    <div className="bg-gold-500/15 rounded-2xl rounded-tr-sm p-4 border border-gold-400/20 ml-8">
+                      <p className="text-gold-100 text-sm font-medium">{selectedFaq.question}</p>
                     </div>
-                    <div className="bg-chocolate-800/50 rounded-xl p-4 border border-gold-400/10">
-                      <p className="text-gold-200/90 text-sm leading-relaxed">{selectedFaq.answer}</p>
+                    
+                    {/* Answer bubble */}
+                    <div className="bg-chocolate-700/60 rounded-2xl rounded-tl-sm p-5 border border-gold-400/10 mr-8 shadow-lg">
+                      <p className="text-gold-100/90 text-sm leading-relaxed">{selectedFaq.answer}</p>
                     </div>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => setShowContact(true)}
-                      className="w-full mt-4 border-gold-400/30 text-gold-300 hover:bg-gold-500/10 hover:text-gold-200"
+                    
+                    {/* CTA Button */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 }}
+                      className="pt-4"
                     >
-                      <MessageCircle className="w-4 h-4 mr-2" />
-                      Ainda tem dúvidas? Fale conosco
-                    </Button>
+                      <Button
+                        onClick={() => setShowContact(true)}
+                        className="w-full bg-gradient-to-r from-gold-600/20 to-gold-500/20 hover:from-gold-600/30 hover:to-gold-500/30 text-gold-200 border border-gold-400/30 hover:border-gold-400/50 transition-all duration-300 hover:-translate-y-0.5"
+                      >
+                        <MessageCircle className="w-4 h-4 mr-2" />
+                        Ainda tem dúvidas? Fale conosco
+                      </Button>
+                    </motion.div>
                   </motion.div>
                 ) : (
                   <motion.div
@@ -185,28 +204,29 @@ const ChatWidget = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 20 }}
-                    className="space-y-2"
+                    className="space-y-3"
                   >
-                    <p className="text-gold-400/70 text-xs mb-3">Perguntas frequentes:</p>
+                    <p className="text-gold-300/60 text-xs uppercase tracking-wider mb-4">Perguntas frequentes</p>
                     {faqs.map((faq, index) => (
                       <motion.button
                         key={index}
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.05 }}
+                        transition={{ delay: index * 0.06 }}
                         onClick={() => setSelectedFaq(faq)}
-                        className="w-full text-left p-3 rounded-xl bg-chocolate-800/40 border border-gold-400/10 hover:border-gold-400/30 hover:bg-chocolate-800/60 transition-all duration-300 group"
+                        className="w-full text-left p-4 rounded-xl bg-chocolate-700/40 border border-gold-400/10 hover:border-gold-400/30 hover:bg-chocolate-700/60 transition-all duration-300 group hover:-translate-y-0.5 hover:shadow-md hover:shadow-gold-500/5"
                       >
-                        <p className="text-gold-200/90 text-sm group-hover:text-gold-100 transition-colors">
+                        <p className="text-gold-100/90 text-sm group-hover:text-gold-50 transition-colors flex items-center gap-2">
+                          <span className="text-gold-400/50 group-hover:text-gold-400 transition-colors">→</span>
                           {faq.question}
                         </p>
                       </motion.button>
                     ))}
 
-                    <div className="pt-3 border-t border-gold-400/10 mt-4">
+                    <div className="pt-4 mt-2 border-t border-gold-400/10">
                       <Button
                         onClick={() => setShowContact(true)}
-                        className="w-full bg-gradient-to-r from-chocolate-700 to-chocolate-600 hover:from-chocolate-600 hover:to-chocolate-500 text-gold-100 border border-gold-400/20"
+                        className="w-full bg-gradient-to-r from-chocolate-600 to-chocolate-500 hover:from-chocolate-500 hover:to-chocolate-400 text-gold-50 border border-gold-400/20 hover:border-gold-400/40 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-gold-500/10"
                       >
                         <MessageCircle className="w-4 h-4 mr-2" />
                         Falar com alguém
@@ -217,10 +237,10 @@ const ChatWidget = () => {
               </AnimatePresence>
             </div>
 
-            {/* Footer decoration */}
-            <div className="bg-chocolate-950 px-4 py-2 flex items-center justify-center gap-2">
-              <span className="text-[10px] text-gold-400/40">Powered by</span>
-              <span className="text-[10px] text-gold-400/60 font-medium">Florybal Chocolates</span>
+            {/* Footer */}
+            <div className="bg-chocolate-900 px-4 py-3 flex items-center justify-center gap-2 border-t border-gold-400/10">
+              <span className="text-[11px] text-gold-400/40">Powered by</span>
+              <span className="text-[11px] text-gold-300/60 font-medium">Florybal Chocolates</span>
               <span className="text-sm">🍫</span>
             </div>
           </motion.div>
