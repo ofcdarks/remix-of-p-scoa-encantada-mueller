@@ -132,6 +132,8 @@ const CatalogoSection = () => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -50 }}
                 transition={{ duration: 0.3 }}
+                loading="lazy"
+                decoding="async"
               />
             </div>
 
@@ -165,6 +167,8 @@ const CatalogoSection = () => {
                     src={page.image}
                     alt={`Página ${page.id}`}
                     className="w-24 h-16 object-cover"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div
                     className={`absolute inset-0 flex items-center justify-center text-white font-bold text-sm ${
@@ -242,6 +246,8 @@ const CatalogoSection = () => {
             alt="Catálogo ampliado"
             className="max-w-full max-h-[90vh] object-contain"
             onClick={(e) => e.stopPropagation()}
+            loading="eager"
+            decoding="async"
           />
           
           {/* Page indicator in zoom mode */}

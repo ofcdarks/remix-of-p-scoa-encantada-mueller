@@ -32,6 +32,9 @@ const HeroSection = () => {
           src={heroImage}
           alt="Chocolates Florybal - Páscoa Premium"
           className="w-full h-[130%] object-cover"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-chocolate-950/80 via-chocolate-950/60 to-chocolate-950/95" />
         {/* Grain texture overlay for premium feel */}
@@ -74,6 +77,8 @@ const HeroSection = () => {
             src={easterBunny} 
             alt="Coelho de Páscoa de chocolate"
             className="w-32 lg:w-44 h-auto rounded-2xl shadow-2xl border-2 border-gold-400/30 object-cover"
+            loading="lazy"
+            decoding="async"
           />
           <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gold-500 rounded-full flex items-center justify-center shadow-lg">
             <Egg className="w-4 h-4 text-chocolate-950" />
@@ -96,6 +101,8 @@ const HeroSection = () => {
             src={easterTruffles} 
             alt="Trufas de Páscoa"
             className="w-28 lg:w-36 h-auto rounded-2xl shadow-2xl border-2 border-gold-400/30 object-cover"
+            loading="lazy"
+            decoding="async"
           />
         </motion.div>
       </motion.div>
@@ -114,6 +121,8 @@ const HeroSection = () => {
             src={easterEggsOpen} 
             alt="Ovos de Páscoa abertos"
             className="w-32 lg:w-40 h-auto rounded-2xl shadow-2xl border-2 border-gold-400/30 object-cover"
+            loading="lazy"
+            decoding="async"
           />
         </motion.div>
       </motion.div>
@@ -128,7 +137,7 @@ const HeroSection = () => {
           className="flex flex-wrap justify-center gap-4 mb-8"
         >
           {/* Logo */}
-          <img src={logoImage} alt="Florybal Logo" className="h-24 md:h-32 lg:h-40 object-contain drop-shadow-lg" />
+          <img src={logoImage} alt="Florybal Logo" className="h-24 md:h-32 lg:h-40 object-contain drop-shadow-lg" loading="eager" decoding="async" />
         </motion.div>
 
         {/* Exclusive Badge - Compact */}
