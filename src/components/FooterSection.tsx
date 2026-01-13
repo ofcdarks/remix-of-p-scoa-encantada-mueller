@@ -11,7 +11,7 @@ const FooterSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   const contactInfo = [
-    { icon: Phone, value: "(47) 99919-1829", href: "tel:+5547999191829" },
+    { icon: Phone, value: "(47) 99919-1829", href: "https://wa.link/fquzxx" },
     { icon: Mail, value: "florybalpomerode@gmail.com", href: "mailto:florybalpomerode@gmail.com" },
     { icon: Instagram, value: "@florybalpomerode", href: "https://www.instagram.com/florybalpomerode/" },
     { icon: MapPin, value: "Rua XV de Novembro, 165 – Pomerode/SC", href: "https://maps.google.com/?q=Rua+XV+de+Novembro+165+Pomerode+SC" },
@@ -35,7 +35,7 @@ const FooterSection = () => {
             
             <Button variant="hero" size="lg" asChild>
               <a 
-                href="https://wa.me/5547999191829?text=Olá!%20Tenho%20interesse%20na%20Feira%20de%20Páscoa%20Florybal%20Pomerode%20para%20minha%20empresa."
+                href="https://wa.link/fquzxx"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2"
