@@ -12,6 +12,7 @@ import CatalogoSection from "@/components/CatalogoSection";
 import ChatWidget from "@/components/ChatWidget";
 import CookieConsent from "@/components/CookieConsent";
 import InstallPWAPrompt from "@/components/InstallPWAPrompt";
+import DebugResetButton from "@/components/DebugResetButton";
 
 const Index = () => {
   return (
@@ -30,6 +31,7 @@ const Index = () => {
       <ChatWidget />
       <CookieConsent />
       <InstallPWAPrompt />
+      <DebugResetButton />
     </main>
   );
 };
