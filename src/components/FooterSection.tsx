@@ -20,8 +20,8 @@ const FooterSection = () => {
     {
       icon: Mail,
       label: "E-mail",
-      value: "florybalpomerode@gmail.com",
-      href: "mailto:florybalpomerode@gmail.com",
+      value: "comercial@florybalpomerode.com.br",
+      href: "mailto:comercial@florybalpomerode.com.br",
     },
     {
       icon: Instagram,
