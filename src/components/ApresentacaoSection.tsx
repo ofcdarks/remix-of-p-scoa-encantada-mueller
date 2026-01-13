@@ -133,7 +133,7 @@ const ApresentacaoSection = () => {
               className="relative pl-6 border-l-2 border-gold-500"
             >
               <p className="font-display text-xl text-foreground/90 italic leading-relaxed">
-                "Nossa proposta é proporcionar à equipe Mueller uma vivência exclusiva, 
+                "Nossa proposta é proporcionar à sua equipe uma vivência exclusiva, 
                 transformando o ambiente corporativo em um espaço de{" "}
                 <span className="text-gold-600 not-italic font-medium">sabor, presente e emoção</span>."
               </p>

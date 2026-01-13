@@ -11,7 +11,7 @@ const LocalDataSection = () => {
     {
       icon: MapPin,
       label: "Local",
-      value: "Mueller – Timbó",
+      value: "Sua Empresa",
       note: "Espaço preparado para a experiência",
     },
     {
@@ -59,7 +59,7 @@ const LocalDataSection = () => {
               Local e <span className="text-gradient-gold">Data</span>
             </h2>
             <p className="font-body text-lg text-muted-foreground max-w-2xl">
-              Organização flexível para se adequar à realidade da Mueller.
+              Organização flexível para se adequar à realidade da sua empresa.
             </p>
           </motion.div>
 
