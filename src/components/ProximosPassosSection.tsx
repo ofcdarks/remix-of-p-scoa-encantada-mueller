@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calendar, MapPin, CreditCard, CheckCircle2 } from "lucide-react";
 
@@ -82,14 +82,26 @@ const ProximosPassosSection = () => {
                   transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
                   className="relative text-center group"
                 >
-                  {/* Step number circle */}
-                  <div className="relative inline-flex items-center justify-center w-16 h-16 rounded-full bg-card border-2 border-border mb-6 mx-auto group-hover:border-gold-400/50 group-hover:shadow-gold/20 transition-all duration-500 overflow-hidden cursor-pointer">
-                    <span className="font-display text-xl text-foreground group-hover:opacity-0 transition-opacity duration-300">{step.number}</span>
+                  {/* Step number circle with animated counter */}
+                  <motion.div 
+                    className="relative inline-flex items-center justify-center w-16 h-16 rounded-full bg-card border-2 border-border mb-6 mx-auto group-hover:border-gold-400/50 group-hover:shadow-gold/20 transition-all duration-500 overflow-hidden cursor-pointer"
+                    initial={{ scale: 0 }}
+                    animate={isInView ? { scale: 1 } : { scale: 0 }}
+                    transition={{ duration: 0.5, delay: 0.3 + index * 0.15, type: "spring" }}
+                  >
+                    <motion.span 
+                      className="font-display text-xl text-foreground group-hover:opacity-0 transition-opacity duration-300"
+                      initial={{ opacity: 0 }}
+                      animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                      transition={{ duration: 0.3, delay: 0.5 + index * 0.15 }}
+                    >
+                      {step.number}
+                    </motion.span>
                     {/* Completed indicator on hover */}
                     <div className="absolute inset-0 rounded-full bg-gradient-to-br from-gold-500 to-gold-600 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center scale-0 group-hover:scale-100">
                       <CheckCircle2 className="w-6 h-6 text-chocolate-950" />
                     </div>
-                  </div>
+                  </motion.div>
 
                   <div className="flex items-center justify-center gap-2 mb-2">
                     <h3 className="font-display text-lg text-foreground group-hover:text-gradient-gold transition-colors duration-300">{step.title}</h3>
@@ -131,7 +143,7 @@ const ProximosPassosSection = () => {
               </Button>
             </div>
             <p className="font-body text-sm text-muted-foreground mt-6">
-              Estamos ansiosos para criar essa experiência com vocês ✨
+              Estamos ansiosos para criar essa experiência com vocês 🍫
             </p>
           </motion.div>
         </div>

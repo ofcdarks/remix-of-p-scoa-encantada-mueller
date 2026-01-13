@@ -5,6 +5,7 @@ import easterBunny from "@/assets/easter-bunny-chocolates.jpg";
 import easterEggsOpen from "@/assets/easter-eggs-open.jpg";
 import logoImage from "@/assets/selo-loja-autorizada.png";
 import { Award, Heart, Star, CheckCircle, Egg } from "lucide-react";
+import AnimatedCounter from "./AnimatedCounter";
 
 const ApresentacaoSection = () => {
   const ref = useRef(null);
@@ -82,7 +83,9 @@ const ApresentacaoSection = () => {
                   <Egg className="w-7 h-7 text-chocolate-950" />
                 </div>
                 <div>
-                  <p className="font-display text-3xl text-gradient-gold font-semibold">+30</p>
+                  <p className="font-display text-3xl text-gradient-gold font-semibold">
+                    +<AnimatedCounter target={30} duration={2000} />
+                  </p>
                   <p className="font-body text-sm text-muted-foreground">Anos de tradição</p>
                 </div>
               </div>
