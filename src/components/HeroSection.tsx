@@ -124,7 +124,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-4 mb-4"
+          className="flex flex-wrap justify-center gap-4 mb-8"
         >
           {/* Logo */}
           <img src={logoImage} alt="Florybal Logo" className="h-24 md:h-32 lg:h-40 object-contain drop-shadow-lg" />
