@@ -191,10 +191,11 @@ const ChatWidget = () => {
                     >
                       <Button
                         onClick={() => setShowContact(true)}
-                        className="w-full bg-gradient-to-r from-gold-600/20 to-gold-500/20 hover:from-gold-600/30 hover:to-gold-500/30 text-gold-200 border border-gold-400/30 hover:border-gold-400/50 transition-all duration-300 hover:-translate-y-0.5"
+                        size="sm"
+                        className="w-full bg-gradient-to-r from-gold-600/20 to-gold-500/20 hover:from-gold-600/30 hover:to-gold-500/30 text-gold-200 border border-gold-400/30 hover:border-gold-400/50 transition-all duration-300 hover:-translate-y-0.5 text-xs px-3"
                       >
-                        <MessageCircle className="w-4 h-4 mr-2" />
-                        Ainda tem dúvidas? Fale conosco
+                        <MessageCircle className="w-3 h-3 mr-1.5 flex-shrink-0" />
+                        <span className="truncate">Ainda tem dúvidas? Fale conosco</span>
                       </Button>
                     </motion.div>
                   </motion.div>
