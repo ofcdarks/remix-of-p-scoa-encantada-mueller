@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import logoImage from "@/assets/florybal-logo-new.png";
+import logoImage from "@/assets/florybal-logo-lettering.png";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
