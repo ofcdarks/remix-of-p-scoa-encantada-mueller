@@ -2,7 +2,8 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Heart, Calendar, ShoppingBag, Award, Settings, ArrowRight } from "lucide-react";
-import premiumGiftImage from "@/assets/premium-gift.jpg";
+import easterGiftBox from "@/assets/easter-gift-box.jpg";
+import easterBasket from "@/assets/easter-basket.jpg";
 
 const BeneficiosSection = () => {
   const ref = useRef(null);
@@ -108,11 +109,25 @@ const BeneficiosSection = () => {
           >
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
               <img
-                src={premiumGiftImage}
-                alt="Presente de chocolate premium Florybal"
+                src={easterGiftBox}
+                alt="Caixa de presente de Páscoa com chocolates premium Florybal"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-chocolate-950/50 to-transparent" />
+              
+              {/* Floating Easter basket */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="absolute -bottom-6 -right-6 w-32 h-32 rounded-xl overflow-hidden shadow-elevated border-2 border-gold-400/30"
+              >
+                <img
+                  src={easterBasket}
+                  alt="Cesta de Páscoa"
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
             </div>
 
             {/* Impact Statement */}

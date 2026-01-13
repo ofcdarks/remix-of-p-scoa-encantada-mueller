@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Play, Building2, MapPin, Star } from "lucide-react";
+import easterEggsOpen from "@/assets/easter-eggs-open.jpg";
 
 const CasoSucessoSection = () => {
   const ref = useRef(null);
@@ -75,6 +76,26 @@ const CasoSucessoSection = () => {
                   </div>
                 ))}
               </div>
+              
+              {/* Easter decoration image */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="mt-6 relative aspect-[16/9] rounded-xl overflow-hidden shadow-soft"
+              >
+                <img
+                  src={easterEggsOpen}
+                  alt="Ovos de Páscoa abertos com recheio"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
+                <div className="absolute bottom-3 left-3 right-3">
+                  <p className="font-body text-xs text-foreground/80 text-center">
+                    🐰 Chocolates artesanais que encantam
+                  </p>
+                </div>
+              </motion.div>
             </motion.div>
 
             {/* Instagram Reel Embed */}

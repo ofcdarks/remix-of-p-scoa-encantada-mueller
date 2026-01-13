@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { CreditCard, FileText, BadgePercent, Check, Zap } from "lucide-react";
+import easterTruffles from "@/assets/easter-truffles.jpg";
 
 const CondicoesSection = () => {
   const ref = useRef(null);
@@ -112,6 +113,22 @@ const CondicoesSection = () => {
             ))}
           </div>
 
+          {/* Easter image decoration */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="flex justify-center mb-8"
+          >
+            <div className="relative w-48 h-48 rounded-full overflow-hidden shadow-elevated border-4 border-gold-400/20">
+              <img
+                src={easterTruffles}
+                alt="Trufas de Páscoa artesanais"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </motion.div>
+          
           {/* Bottom callout */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}

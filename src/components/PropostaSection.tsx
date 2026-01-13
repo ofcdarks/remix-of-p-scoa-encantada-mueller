@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import corporateImage from "@/assets/alfajor.png";
+import easterCorporateEvent from "@/assets/easter-corporate-event.jpg";
+import easterBunnyElegant from "@/assets/easter-bunny-elegant.jpg";
 import { Sparkles, Gift, ShoppingBag, Users, ArrowRight } from "lucide-react";
 
 const PropostaSection = () => {
@@ -121,11 +122,25 @@ const PropostaSection = () => {
           >
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
               <img
-                src={corporateImage}
-                alt="Evento corporativo de chocolate Florybal"
+                src={easterCorporateEvent}
+                alt="Feira de Páscoa corporativa Florybal"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-chocolate-950/80 via-chocolate-950/20 to-transparent" />
+              
+              {/* Floating bunny image */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+                animate={isInView ? { opacity: 1, scale: 1, rotate: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="absolute top-4 right-4 w-28 h-28 rounded-full overflow-hidden shadow-elevated border-2 border-gold-400/40"
+              >
+                <img
+                  src={easterBunnyElegant}
+                  alt="Coelho de Páscoa artesanal"
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
               
               {/* Overlay content */}
               <div className="absolute bottom-0 left-0 right-0 p-8">
