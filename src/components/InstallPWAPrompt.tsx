@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Download, X, Smartphone } from "lucide-react";
+import { Download, X, Smartphone, Share, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logoLettering from "@/assets/florybal-logo-lettering-branco.png";
 
@@ -12,17 +12,23 @@ interface BeforeInstallPromptEvent extends Event {
 const InstallPWAPrompt = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+  const [isIOS, setIsIOS] = useState(false);
 
   useEffect(() => {
     const dismissed = localStorage.getItem("pwaPromptDismissed");
     const installed = localStorage.getItem("pwaInstalled");
     const isStandalone = window.matchMedia("(display-mode: standalone)").matches;
+    
+    // Detecta se é iOS
+    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
+    setIsIOS(iOS);
 
     if (dismissed || installed || isStandalone) return;
 
     const handleBeforeInstall = (e: Event) => {
       e.preventDefault();
       setDeferredPrompt(e as BeforeInstallPromptEvent);
+      console.log("PWA: beforeinstallprompt captured");
     };
 
     window.addEventListener("beforeinstallprompt", handleBeforeInstall);
@@ -30,6 +36,7 @@ const InstallPWAPrompt = () => {
     const handleAppInstalled = () => {
       localStorage.setItem("pwaInstalled", "true");
       setIsVisible(false);
+      console.log("PWA: App installed");
     };
 
     window.addEventListener("appinstalled", handleAppInstalled);
@@ -59,14 +66,24 @@ const InstallPWAPrompt = () => {
 
   const handleInstall = async () => {
     if (deferredPrompt) {
-      await deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      if (outcome === "accepted") {
-        localStorage.setItem("pwaInstalled", "true");
+      try {
+        await deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        console.log("PWA: User choice:", outcome);
+        if (outcome === "accepted") {
+          localStorage.setItem("pwaInstalled", "true");
+        }
+        setDeferredPrompt(null);
+        setIsVisible(false);
+      } catch (error) {
+        console.error("PWA: Error during install:", error);
+        setIsVisible(false);
       }
-      setDeferredPrompt(null);
+    } else {
+      // Se não tem prompt nativo, apenas fecha (iOS mostra instruções)
+      console.log("PWA: No native prompt available");
+      setIsVisible(false);
     }
-    setIsVisible(false);
   };
 
   const handleDismiss = () => {
@@ -96,7 +113,7 @@ const InstallPWAPrompt = () => {
             className="fixed inset-x-0 bottom-[calc(1rem+env(safe-area-inset-bottom))] z-[201] px-4"
           >
             <div className="mx-auto w-full max-w-[300px] sm:max-w-[360px]">
-              <div className="bg-gradient-to-br from-chocolate-800 via-chocolate-900 to-chocolate-950 border border-gold-500/40 rounded-xl shadow-2xl overflow-hidden">
+              <div className="bg-gradient-to-br from-chocolate-800 via-chocolate-900 to-chocolate-950 border border-gold-500/40 rounded-xl shadow-2xl overflow-hidden relative">
               {/* Gold accent line */}
               <div className="h-0.5 bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600" />
 
@@ -133,27 +150,50 @@ const InstallPWAPrompt = () => {
                   Instale nosso App
                 </h2>
 
-                {/* Description */}
-                <p className="text-gold-200/80 text-xs mb-3 leading-relaxed">
-                  Acesso rápido à <span className="text-gold-300 font-medium">Feira de Páscoa</span> na sua tela inicial!
-                </p>
+                {/* Description - diferente para iOS */}
+                {isIOS && !deferredPrompt ? (
+                  <div className="text-gold-200/80 text-xs mb-3 leading-relaxed">
+                    <p className="mb-2">Para instalar no iPhone/iPad:</p>
+                    <div className="flex items-center justify-center gap-1 text-gold-300">
+                      <span>Toque em</span>
+                      <Share className="w-3 h-3 inline" />
+                      <span>e depois</span>
+                      <Plus className="w-3 h-3 inline" />
+                      <span>"Tela de Início"</span>
+                    </div>
+                  </div>
+                ) : (
+                  <p className="text-gold-200/80 text-xs mb-3 leading-relaxed">
+                    Acesso rápido à <span className="text-gold-300 font-medium">Feira de Páscoa</span> na sua tela inicial!
+                  </p>
+                )}
 
                 {/* Buttons */}
                 <div className="flex flex-col gap-1.5">
-                  <Button
-                    onClick={handleInstall}
-                    size="sm"
-                    className="w-full bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 text-chocolate-950 font-bold text-xs py-2 rounded-lg shadow-gold hover:scale-[1.02] transition-all"
-                  >
-                    <Download className="w-3.5 h-3.5 mr-1.5" />
-                    Instalar
-                  </Button>
+                  {deferredPrompt ? (
+                    <Button
+                      onClick={handleInstall}
+                      size="sm"
+                      className="w-full bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 text-chocolate-950 font-bold text-xs py-2 rounded-lg shadow-gold hover:scale-[1.02] transition-all"
+                    >
+                      <Download className="w-3.5 h-3.5 mr-1.5" />
+                      Instalar Agora
+                    </Button>
+                  ) : (
+                    <Button
+                      onClick={handleDismiss}
+                      size="sm"
+                      className="w-full bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 text-chocolate-950 font-bold text-xs py-2 rounded-lg shadow-gold hover:scale-[1.02] transition-all"
+                    >
+                      Entendi
+                    </Button>
+                  )}
 
                   <button
                     onClick={handleDismiss}
                     className="text-gold-400/50 hover:text-gold-300 text-[10px] transition-colors"
                   >
-                    Agora não
+                    {deferredPrompt ? "Agora não" : "Fechar"}
                   </button>
                 </div>
               </div>
