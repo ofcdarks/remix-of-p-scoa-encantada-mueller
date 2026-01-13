@@ -82,28 +82,28 @@ const CondicoesSection = () => {
                 transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
                 className="group relative"
               >
-                <div className="h-full p-6 rounded-2xl bg-card border border-border hover:border-gold-400/30 shadow-soft hover:shadow-elevated transition-all duration-300 hover:-translate-y-1">
+                <div className="h-full p-6 rounded-2xl bg-card border border-border hover:border-gold-400/40 shadow-soft hover:shadow-elevated transition-all duration-500 hover:-translate-y-2">
                   {/* Highlight Badge */}
                   <div className="absolute -top-3 left-6">
-                    <span className="inline-block px-3 py-1 rounded-full bg-gradient-to-r from-gold-500 to-gold-600 text-chocolate-950 text-xs font-bold uppercase tracking-wider shadow-sm">
+                    <span className="inline-block px-3 py-1 rounded-full bg-gradient-to-r from-gold-500 to-gold-600 text-chocolate-950 text-xs font-bold uppercase tracking-wider shadow-sm group-hover:shadow-gold transition-shadow duration-300">
                       {condition.highlight}
                     </span>
                   </div>
 
                   <div className="pt-4">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-gold-400/20 transition-colors">
-                      <condition.icon className="w-6 h-6 text-primary group-hover:text-gold-600 transition-colors" />
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-gold-400/25 group-hover:scale-110 transition-all duration-300">
+                      <condition.icon className="w-6 h-6 text-primary group-hover:text-gold-600 transition-colors duration-300" />
                     </div>
                     
-                    <h3 className="font-display text-xl text-foreground mb-2">{condition.title}</h3>
-                    <p className="font-body text-sm text-muted-foreground leading-relaxed mb-5">{condition.description}</p>
+                    <h3 className="font-display text-xl text-foreground mb-2 group-hover:text-gradient-gold transition-colors duration-300">{condition.title}</h3>
+                    <p className="font-body text-sm text-muted-foreground leading-relaxed mb-5 group-hover:text-foreground/70 transition-colors">{condition.description}</p>
                     
                     {/* Benefits list */}
                     <div className="space-y-2">
-                      {condition.benefits.map((benefit) => (
-                        <div key={benefit} className="flex items-center gap-2">
-                          <Check className="w-4 h-4 text-gold-500" />
-                          <span className="font-body text-sm text-muted-foreground">{benefit}</span>
+                      {condition.benefits.map((benefit, i) => (
+                        <div key={benefit} className="flex items-center gap-2 group/item">
+                          <Check className="w-4 h-4 text-gold-500 group-hover/item:scale-110 transition-transform" />
+                          <span className="font-body text-sm text-muted-foreground group-hover:text-foreground/70 transition-colors">{benefit}</span>
                         </div>
                       ))}
                     </div>
@@ -120,12 +120,13 @@ const CondicoesSection = () => {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="flex justify-center mb-8"
           >
-            <div className="relative w-48 h-48 rounded-full overflow-hidden shadow-elevated border-4 border-gold-400/20">
+            <div className="relative w-48 h-48 rounded-full overflow-hidden shadow-elevated border-4 border-gold-400/20 hover:border-gold-400/50 hover:shadow-gold transition-all duration-500 image-zoom group">
               <img
                 src={easterTruffles}
                 alt="Trufas de Páscoa artesanais"
                 className="w-full h-full object-cover"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-chocolate-950/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
           </motion.div>
           
@@ -134,9 +135,9 @@ const CondicoesSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex items-center justify-center gap-3 px-6 py-4 rounded-full bg-gold-500/5 border border-gold-400/20 max-w-xl mx-auto"
+            className="flex items-center justify-center gap-3 px-6 py-4 rounded-full bg-gradient-to-r from-gold-500/10 via-gold-500/5 to-gold-500/10 border border-gold-400/20 max-w-xl mx-auto hover:border-gold-400/40 hover:from-gold-500/15 hover:via-gold-500/10 hover:to-gold-500/15 transition-all duration-500 group"
           >
-            <Zap className="w-5 h-5 text-gold-500" />
+            <Zap className="w-5 h-5 text-gold-500 group-hover:scale-110 transition-transform duration-300" />
             <p className="font-body text-sm text-foreground text-center">
               Essas facilidades <strong className="text-gradient-gold">aumentam significativamente</strong> a adesão e conversão
             </p>

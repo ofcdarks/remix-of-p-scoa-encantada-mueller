@@ -49,13 +49,13 @@ const CasoSucessoSection = () => {
               </div>
 
               {/* Company info card */}
-              <div className="p-5 rounded-2xl bg-card border border-border">
+              <div className="p-5 rounded-2xl bg-card border border-border hover:border-gold-400/30 hover:shadow-soft transition-all duration-500 group">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-gold-500 to-gold-600 flex items-center justify-center flex-shrink-0 shadow-gold">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-gold-500 to-gold-600 flex items-center justify-center flex-shrink-0 shadow-gold group-hover:scale-110 transition-transform duration-300">
                     <Building2 className="w-6 h-6 text-chocolate-950" />
                   </div>
                   <div>
-                    <h3 className="font-display text-lg text-foreground mb-1">Empresa Bold</h3>
+                    <h3 className="font-display text-lg text-foreground mb-1 group-hover:text-gradient-gold transition-colors">Empresa Bold</h3>
                     <div className="flex items-center gap-2 text-muted-foreground text-sm">
                       <MapPin className="w-4 h-4" />
                       <span>Jaraguá do Sul - SC</span>
@@ -69,9 +69,9 @@ const CasoSucessoSection = () => {
                 {["Degustação", "Integração", "Encantamento"].map((item) => (
                   <div 
                     key={item}
-                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-gold-500/10 border border-gold-400/20"
+                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-gold-500/10 border border-gold-400/20 hover:border-gold-400/40 hover:bg-gold-500/20 transition-all duration-300 cursor-default group"
                   >
-                    <Star className="w-3 h-3 text-gold-500 fill-gold-500" />
+                    <Star className="w-3 h-3 text-gold-500 fill-gold-500 group-hover:scale-110 transition-transform" />
                     <span className="font-body text-sm text-foreground/80">{item}</span>
                   </div>
                 ))}
@@ -82,14 +82,14 @@ const CasoSucessoSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="mt-6 relative aspect-[16/9] rounded-xl overflow-hidden shadow-soft"
+                className="mt-6 relative aspect-[16/9] rounded-xl overflow-hidden shadow-soft image-zoom group"
               >
                 <img
                   src={easterEggsOpen}
                   alt="Ovos de Páscoa abertos com recheio"
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-background/20 to-transparent group-hover:from-background/50 transition-all duration-500" />
                 <div className="absolute bottom-3 left-3 right-3">
                   <p className="font-body text-xs text-foreground/80 text-center">
                     🐰 Chocolates artesanais que encantam
@@ -103,22 +103,22 @@ const CasoSucessoSection = () => {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative"
-            >
-              <div className="relative aspect-[9/16] max-w-[350px] mx-auto rounded-2xl overflow-hidden shadow-elevated bg-chocolate-950">
-                {/* Instagram Embed */}
-                <iframe
-                  src="https://www.instagram.com/reel/DSKz3w0DjO0/embed"
-                  className="w-full h-full border-0"
-                  allowFullScreen
-                  scrolling="no"
-                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                  title="Feira de Páscoa Florybal na empresa Bold"
-                />
-                
-                {/* Decorative frame */}
-                <div className="absolute inset-0 rounded-2xl border-2 border-gold-400/20 pointer-events-none" />
-              </div>
+            className="relative group"
+          >
+            <div className="relative aspect-[9/16] max-w-[350px] mx-auto rounded-2xl overflow-hidden shadow-elevated bg-chocolate-950 hover:shadow-gold/30 transition-all duration-500">
+              {/* Instagram Embed */}
+              <iframe
+                src="https://www.instagram.com/reel/DSKz3w0DjO0/embed"
+                className="w-full h-full border-0"
+                allowFullScreen
+                scrolling="no"
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                title="Feira de Páscoa Florybal na empresa Bold"
+              />
+              
+              {/* Decorative frame */}
+              <div className="absolute inset-0 rounded-2xl border-2 border-gold-400/20 group-hover:border-gold-400/40 pointer-events-none transition-colors duration-500" />
+            </div>
 
               {/* Floating play indicator */}
               <motion.div

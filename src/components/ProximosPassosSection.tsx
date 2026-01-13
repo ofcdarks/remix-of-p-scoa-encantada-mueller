@@ -80,26 +80,26 @@ const ProximosPassosSection = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-                  className="relative text-center"
+                  className="relative text-center group"
                 >
                   {/* Step number circle */}
-                  <div className="relative inline-flex items-center justify-center w-16 h-16 rounded-full bg-card border-2 border-border mb-6 mx-auto group-hover:border-gold-400/50 transition-colors">
-                    <span className="font-display text-xl text-foreground">{step.number}</span>
+                  <div className="relative inline-flex items-center justify-center w-16 h-16 rounded-full bg-card border-2 border-border mb-6 mx-auto group-hover:border-gold-400/50 group-hover:shadow-gold/20 transition-all duration-500 overflow-hidden cursor-pointer">
+                    <span className="font-display text-xl text-foreground group-hover:opacity-0 transition-opacity duration-300">{step.number}</span>
                     {/* Completed indicator on hover */}
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-gold-500 to-gold-600 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-gold-500 to-gold-600 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center scale-0 group-hover:scale-100">
                       <CheckCircle2 className="w-6 h-6 text-chocolate-950" />
                     </div>
                   </div>
 
                   <div className="flex items-center justify-center gap-2 mb-2">
-                    <h3 className="font-display text-lg text-foreground">{step.title}</h3>
+                    <h3 className="font-display text-lg text-foreground group-hover:text-gradient-gold transition-colors duration-300">{step.title}</h3>
                     {step.optional && (
                       <span className="px-2 py-0.5 rounded-full bg-secondary text-[10px] font-body text-muted-foreground font-medium uppercase tracking-wider">
                         Opcional
                       </span>
                     )}
                   </div>
-                  <p className="font-body text-sm text-muted-foreground">{step.description}</p>
+                  <p className="font-body text-sm text-muted-foreground group-hover:text-foreground/70 transition-colors">{step.description}</p>
                 </motion.div>
               ))}
             </div>

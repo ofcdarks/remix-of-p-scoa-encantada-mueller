@@ -194,6 +194,86 @@
     scrollbar-width: thin;
     scrollbar-color: hsl(var(--muted)) transparent;
   }
+
+  /* Glass morphism card */
+  .glass-card {
+    @apply backdrop-blur-md bg-white/5 border border-white/10;
+  }
+
+  /* Premium hover lift effect */
+  .hover-lift {
+    @apply transition-all duration-500 ease-out;
+  }
+  
+  .hover-lift:hover {
+    @apply -translate-y-2 shadow-elevated;
+  }
+
+  /* Glow effect on hover */
+  .hover-glow {
+    @apply transition-all duration-500;
+  }
+  
+  .hover-glow:hover {
+    box-shadow: 0 0 30px hsl(38 70% 50% / 0.2);
+  }
+
+  /* Gradient border effect */
+  .gradient-border {
+    position: relative;
+  }
+  
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, hsl(38 70% 50% / 0.5), hsl(38 70% 50% / 0.1), hsl(38 70% 50% / 0.5));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* Shimmer loading effect */
+  .shimmer-bg {
+    background: linear-gradient(90deg, transparent, hsl(38 70% 50% / 0.1), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  /* Image zoom on hover */
+  .image-zoom {
+    @apply overflow-hidden;
+  }
+  
+  .image-zoom img {
+    @apply transition-transform duration-700 ease-out;
+  }
+  
+  .image-zoom:hover img {
+    @apply scale-110;
+  }
+
+  /* Underline animation */
+  .underline-animation {
+    @apply relative;
+  }
+  
+  .underline-animation::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-gold-500 transition-all duration-300;
+  }
+  
+  .underline-animation:hover::after {
+    @apply w-full;
+  }
+
+  /* Subtle pulse glow */
+  .pulse-glow {
+    animation: pulseGlow 3s ease-in-out infinite;
+  }
 }
 
 /* Custom animations */
@@ -229,6 +309,17 @@
   }
 }
 
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px hsl(38 70% 50% / 0.2); }
+  50% { box-shadow: 0 0 40px hsl(38 70% 50% / 0.4); }
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
@@ -244,6 +335,11 @@
 
 .animate-scale-in {
   animation: scaleIn 0.5s ease-out forwards;
+}
+
+.animate-gradient-flow {
+  background-size: 200% 200%;
+  animation: gradientFlow 4s ease infinite;
 }
 
 .animation-delay-100 { animation-delay: 100ms; }
