@@ -125,8 +125,8 @@ const ProximosPassosSection = () => {
                 </a>
               </Button>
               <Button variant="outline" size="lg" asChild>
-                <a href="tel:+5547997699193" className="min-w-[200px]">
-                  (47) 99769-9193
+                <a href="tel:+5547999191829" className="min-w-[200px]">
+                  (47) 99919-1829
                 </a>
               </Button>
             </div>
