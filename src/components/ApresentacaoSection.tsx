@@ -157,8 +157,8 @@ const ApresentacaoSection = () => {
               </p>
             </motion.blockquote>
             
-            {/* Compact highlights */}
-            <div className="flex flex-wrap gap-3 pt-4">
+            {/* Compact highlights - Better aligned */}
+            <div className="flex flex-wrap items-center justify-start gap-2 pt-4">
               {[
                 { icon: Star, label: "Premium" },
                 { icon: Heart, label: "Artesanal" },
@@ -166,10 +166,10 @@ const ApresentacaoSection = () => {
               ].map((item) => (
                 <div 
                   key={item.label} 
-                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-secondary border border-border hover:border-gold-400/40 hover:bg-gold-500/10 transition-all duration-300 cursor-default group"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary border border-border hover:border-gold-400/40 hover:bg-gold-500/10 transition-all duration-300 cursor-default group"
                 >
-                  <item.icon className="w-4 h-4 text-gold-500 group-hover:scale-110 transition-transform duration-300" />
-                  <span className="font-body text-sm text-foreground/80">{item.label}</span>
+                  <item.icon className="w-3.5 h-3.5 text-gold-500 group-hover:scale-110 transition-transform duration-300" />
+                  <span className="font-body text-xs text-foreground/80">{item.label}</span>
                 </div>
               ))}
             </div>
