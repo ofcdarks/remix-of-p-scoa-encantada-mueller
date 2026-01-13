@@ -34,7 +34,21 @@ const InstallPWAPrompt = () => {
 
     window.addEventListener("appinstalled", handleAppInstalled);
 
-    const timer = setTimeout(() => setIsVisible(true), 5000);
+    // Função para verificar se pode mostrar o PWA prompt
+    const checkAndShowPrompt = () => {
+      const cookieConsent = localStorage.getItem("cookieConsent");
+      
+      // Só mostra o PWA prompt se o cookie consent já foi respondido
+      if (cookieConsent) {
+        setIsVisible(true);
+      } else {
+        // Se não foi respondido ainda, verifica novamente em 1 segundo
+        setTimeout(checkAndShowPrompt, 1000);
+      }
+    };
+
+    // Delay inicial de 5 segundos, depois verifica se pode mostrar
+    const timer = setTimeout(checkAndShowPrompt, 5000);
 
     return () => {
       clearTimeout(timer);
