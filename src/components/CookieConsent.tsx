@@ -8,12 +8,21 @@ const CookieConsent = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const consent = localStorage.getItem("cookieConsent");
-    if (!consent) {
-      // Delay para não aparecer imediatamente
-      const timer = setTimeout(() => setIsVisible(true), 2000);
-      return () => clearTimeout(timer);
-    }
+    // Pequeno delay para garantir que o componente montou
+    const checkConsent = () => {
+      const consent = localStorage.getItem("cookieConsent");
+      console.log("Cookie consent status:", consent);
+      if (!consent) {
+        // Delay para não aparecer imediatamente
+        const timer = setTimeout(() => {
+          console.log("Showing cookie consent");
+          setIsVisible(true);
+        }, 2000);
+        return () => clearTimeout(timer);
+      }
+    };
+    
+    checkConsent();
   }, []);
 
   const handleAccept = () => {
