@@ -124,10 +124,10 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-4 mb-8"
+          className="flex flex-wrap justify-center gap-4 mb-4"
         >
           {/* Logo */}
-          <img src={logoImage} alt="Florybal Logo" className="h-40 md:h-56 lg:h-64 object-contain drop-shadow-lg" />
+          <img src={logoImage} alt="Florybal Logo" className="h-48 md:h-64 lg:h-80 object-contain drop-shadow-lg" />
         </motion.div>
 
         {/* Exclusive Badge */}
