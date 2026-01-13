@@ -7,12 +7,14 @@ import CondicoesSection from "@/components/CondicoesSection";
 import BeneficiosSection from "@/components/BeneficiosSection";
 import ProximosPassosSection from "@/components/ProximosPassosSection";
 import FooterSection from "@/components/FooterSection";
+import CatalogoSection from "@/components/CatalogoSection";
 
 const Index = () => {
   return (
     <main className="min-h-screen">
       <HeroSection />
       <ApresentacaoSection />
+      <CatalogoSection />
       <PropostaSection />
       <CasoSucessoSection />
       <LocalDataSection />
