@@ -11,6 +11,7 @@ import FooterSection from "@/components/FooterSection";
 import CatalogoSection from "@/components/CatalogoSection";
 import ChatWidget from "@/components/ChatWidget";
 import CookieConsent from "@/components/CookieConsent";
+import InstallPWAPrompt from "@/components/InstallPWAPrompt";
 
 const Index = () => {
   return (
@@ -28,6 +29,7 @@ const Index = () => {
       <FooterSection />
       <ChatWidget />
       <CookieConsent />
+      <InstallPWAPrompt />
     </main>
   );
 };
