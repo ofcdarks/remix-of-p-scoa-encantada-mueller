@@ -85,7 +85,7 @@ const FooterSection = () => {
                 rel="noopener noreferrer"
                 className="text-gold-400/70 hover:text-gold-400 transition-colors"
               >
-                DigiAi
+                DigiAi ❤️
               </a>
             </p>
             <div className="flex gap-4">
