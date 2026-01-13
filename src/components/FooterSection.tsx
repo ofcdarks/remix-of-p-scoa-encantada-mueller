@@ -78,7 +78,15 @@ const FooterSection = () => {
             className="flex flex-col md:flex-row items-center justify-between gap-3 text-center md:text-left"
           >
             <p className="font-body text-xs text-gold-400/50">
-              © {new Date().getFullYear()} Florybal Chocolates Caseiros • Chocolate de Gramado em Pomerode
+              © {new Date().getFullYear()} Florybal Chocolates Caseiros • Chocolate de Gramado em Pomerode • Feito por{" "}
+              <a 
+                href="https://wa.link/raps5i" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gold-400/70 hover:text-gold-400 transition-colors"
+              >
+                DigiAi
+              </a>
             </p>
             <div className="flex gap-4">
               <Link to="/politica-privacidade" className="font-body text-xs text-gold-400/50 hover:text-gold-400 transition-colors">
