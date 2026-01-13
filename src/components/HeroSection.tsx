@@ -118,7 +118,7 @@ const HeroSection = () => {
       </motion.div>
 
       {/* Content */}
-      <motion.div style={{ opacity }} className="relative z-10 text-center px-6 max-w-5xl mx-auto pt-20 md:pt-24">
+      <motion.div style={{ opacity }} className="relative z-10 text-center px-6 max-w-5xl mx-auto pt-28 md:pt-32">
         {/* Trust indicators - Float above */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
