@@ -44,7 +44,7 @@ const ChatWidget = () => {
     }
   };
 
-  const whatsappUrl = "https://wa.me/5547999191829?text=Olá!%20Tenho%20interesse%20na%20Feira%20de%20Páscoa%20Florybal%20Pomerode%20para%20minha%20empresa.";
+  const whatsappUrl = "https://wa.link/fquzxx";
 
   return (
     <>
@@ -146,7 +146,9 @@ const ChatWidget = () => {
                       </a>
 
                       <a
-                        href="tel:+5547999191829"
+                        href="https://wa.link/fquzxx"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="flex items-center gap-4 p-4 rounded-xl bg-gold-500/10 border border-gold-400/20 hover:bg-gold-500/20 hover:border-gold-400/40 transition-all duration-300 group hover:-translate-y-0.5 hover:shadow-lg hover:shadow-gold-500/10"
                       >
                         <div className="w-12 h-12 rounded-full bg-gold-500/30 flex items-center justify-center group-hover:scale-110 transition-transform">
