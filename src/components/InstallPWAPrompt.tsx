@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Download, X, Smartphone, Info } from "lucide-react";
+import { Download, X, Smartphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logoLettering from "@/assets/florybal-logo-lettering-branco.png";
 
@@ -20,7 +20,6 @@ const InstallPWAPrompt = () => {
 
     if (dismissed || installed || isStandalone) return;
 
-    // Capturar o evento beforeinstallprompt (só funciona em site publicado)
     const handleBeforeInstall = (e: Event) => {
       e.preventDefault();
       setDeferredPrompt(e as BeforeInstallPromptEvent);
@@ -35,7 +34,6 @@ const InstallPWAPrompt = () => {
 
     window.addEventListener("appinstalled", handleAppInstalled);
 
-    // Mostrar após 5 segundos
     const timer = setTimeout(() => setIsVisible(true), 5000);
 
     return () => {
@@ -53,18 +51,14 @@ const InstallPWAPrompt = () => {
         localStorage.setItem("pwaInstalled", "true");
       }
       setDeferredPrompt(null);
-      setIsVisible(false);
     }
-    // Se não tem deferredPrompt, o botão já mostra "Entendi" e fecha
+    setIsVisible(false);
   };
 
   const handleDismiss = () => {
     localStorage.setItem("pwaPromptDismissed", "true");
     setIsVisible(false);
   };
-
-  const isIOS = typeof navigator !== "undefined" && /iPad|iPhone|iPod/.test(navigator.userAgent);
-  const isAndroid = typeof navigator !== "undefined" && /Android/.test(navigator.userAgent);
 
   return (
     <AnimatePresence>
@@ -121,49 +115,24 @@ const InstallPWAPrompt = () => {
 
                 {/* Title */}
                 <h2 className="font-display text-base text-gold-100 mb-1">
-                  Adicione à tela inicial
+                  Instale nosso App
                 </h2>
 
-                {/* Instructions based on device */}
-                <div className="bg-chocolate-700/30 rounded-lg p-2.5 mb-3 border border-gold-500/20">
-                  {isIOS ? (
-                    <p className="text-gold-200/90 text-[11px] leading-relaxed">
-                      Toque em <span className="text-gold-300 font-medium">Compartilhar</span> (📤) →{" "}
-                      <span className="text-gold-300 font-medium">"Adicionar à Tela de Início"</span>
-                    </p>
-                  ) : isAndroid ? (
-                    <p className="text-gold-200/90 text-[11px] leading-relaxed">
-                      Toque no menu <span className="text-gold-300 font-medium">⋮</span> →{" "}
-                      <span className="text-gold-300 font-medium">"Adicionar à tela inicial"</span>
-                    </p>
-                  ) : (
-                    <p className="text-gold-200/90 text-[11px] leading-relaxed">
-                      Clique no menu <span className="text-gold-300 font-medium">⋮</span> ou ícone de instalação na barra de endereço →{" "}
-                      <span className="text-gold-300 font-medium">"Instalar"</span>
-                    </p>
-                  )}
-                </div>
+                {/* Description */}
+                <p className="text-gold-200/80 text-xs mb-3 leading-relaxed">
+                  Acesso rápido à <span className="text-gold-300 font-medium">Feira de Páscoa</span> na sua tela inicial!
+                </p>
 
                 {/* Buttons */}
                 <div className="flex flex-col gap-1.5">
-                  {deferredPrompt ? (
-                    <Button
-                      onClick={handleInstall}
-                      size="sm"
-                      className="w-full bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 text-chocolate-950 font-bold text-xs py-2.5 rounded-lg shadow-gold hover:scale-[1.02] transition-all"
-                    >
-                      <Download className="w-3.5 h-3.5 mr-1.5" />
-                      Instalar agora
-                    </Button>
-                  ) : (
-                    <Button
-                      onClick={handleDismiss}
-                      size="sm"
-                      className="w-full bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 text-chocolate-950 font-bold text-xs py-2.5 rounded-lg shadow-gold hover:scale-[1.02] transition-all"
-                    >
-                      Entendi
-                    </Button>
-                  )}
+                  <Button
+                    onClick={handleInstall}
+                    size="sm"
+                    className="w-full bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 text-chocolate-950 font-bold text-xs py-2.5 rounded-lg shadow-gold hover:scale-[1.02] transition-all"
+                  >
+                    <Download className="w-3.5 h-3.5 mr-1.5" />
+                    Instalar
+                  </Button>
 
                   <button
                     onClick={handleDismiss}
