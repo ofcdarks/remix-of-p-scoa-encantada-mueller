@@ -42,7 +42,7 @@ const CasoSucessoSection = () => {
                   <span className="block text-gradient-gold">em ação</span>
                 </h2>
                 <p className="font-body text-lg text-muted-foreground leading-relaxed">
-                  Confira como foi a Feira de Páscoa Florybal realizada na empresa Bold, 
+                  Confira como foi a Feira de Páscoa Florybal Pomerode realizada na empresa Bold, 
                   em Jaraguá do Sul - SC. Uma experiência que encantou colaboradores e 
                   transformou o ambiente corporativo.
                 </p>

@@ -108,7 +108,7 @@ const FooterSection = () => {
               className="group"
             >
               <a 
-                href="https://wa.me/5547999191829?text=Olá!%20Tenho%20interesse%20na%20Feira%20de%20Páscoa%20Florybal%20para%20minha%20empresa.%20Gostaria%20de%20agendar%20uma%20conversa."
+                href="https://wa.me/5547999191829?text=Olá!%20Tenho%20interesse%20na%20Feira%20de%20Páscoa%20Florybal%20Pomerode%20para%20minha%20empresa.%20Gostaria%20de%20agendar%20uma%20conversa."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3"
