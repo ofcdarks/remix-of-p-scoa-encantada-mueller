@@ -3,7 +3,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import easterCorporateEvent from "@/assets/easter-corporate-event.jpg";
 import easterBunnyElegant from "@/assets/easter-bunny-elegant.jpg";
-import { Sparkles, Gift, ShoppingBag, Users, ArrowRight } from "lucide-react";
+import { Gift, ShoppingBag, Users, ArrowRight, Cookie } from "lucide-react";
 
 const PropostaSection = () => {
   const ref = useRef(null);
@@ -11,7 +11,7 @@ const PropostaSection = () => {
 
   const features = [
     {
-      icon: Sparkles,
+      icon: Cookie,
       title: "Degustação Guiada",
       description: "Experiência sensorial conduzida por especialistas",
     },
@@ -145,7 +145,7 @@ const PropostaSection = () => {
               {/* Overlay content */}
               <div className="absolute bottom-0 left-0 right-0 p-8">
                 <div className="flex items-center gap-2 mb-3">
-                  <Sparkles className="w-4 h-4 text-gold-400" />
+                  <span className="text-lg">🍫</span>
                   <span className="text-gold-400 text-xs font-medium tracking-wider uppercase">Experiência Única</span>
                 </div>
                 <p className="font-display text-2xl text-gold-50 leading-tight">

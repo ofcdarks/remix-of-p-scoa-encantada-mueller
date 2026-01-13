@@ -6,7 +6,7 @@ import easterTruffles from "@/assets/easter-truffles.jpg";
 import easterEggsOpen from "@/assets/easter-eggs-open.jpg";
 import logoImage from "@/assets/florybal-logo-negativo.png";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, Sparkles, Egg } from "lucide-react";
+import { ChevronDown, Egg } from "lucide-react";
 
 const HeroSection = () => {
   const containerRef = useRef(null);
@@ -137,11 +137,11 @@ const HeroSection = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="inline-flex items-center gap-2 bg-gradient-to-r from-gold-500/20 via-gold-400/30 to-gold-500/20 backdrop-blur-md border border-gold-400/40 rounded-full px-8 py-3 mb-10"
         >
-          <Sparkles className="w-4 h-4 text-gold-300" />
+          <span className="text-lg">🍫</span>
           <span className="text-gold-200 font-body text-sm tracking-[0.2em] font-semibold uppercase">
             Proposta Exclusiva
           </span>
-          <Sparkles className="w-4 h-4 text-gold-300" />
+          <span className="text-lg">🍫</span>
         </motion.div>
 
         {/* Main Heading - Larger, more dramatic */}
