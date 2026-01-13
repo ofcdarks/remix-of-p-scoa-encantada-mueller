@@ -13,13 +13,17 @@ const InstallPWAPrompt = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [isIOS, setIsIOS] = useState(false);
+  const [isSecure, setIsSecure] = useState(true);
+  const [installError, setInstallError] = useState<string | null>(null);
 
   useEffect(() => {
     const dismissed = localStorage.getItem("pwaPromptDismissed");
     const installed = localStorage.getItem("pwaInstalled");
     const isStandalone = window.matchMedia("(display-mode: standalone)").matches;
-    
-    // Detecta se é iOS
+
+    setIsSecure(Boolean(window.isSecureContext));
+
+    // Detecta se é iOS (inclui Chrome iOS, que usa o engine do Safari)
     const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
     setIsIOS(iOS);
 
@@ -28,6 +32,7 @@ const InstallPWAPrompt = () => {
     const handleBeforeInstall = (e: Event) => {
       e.preventDefault();
       setDeferredPrompt(e as BeforeInstallPromptEvent);
+      setInstallError(null);
       console.log("PWA: beforeinstallprompt captured");
     };
 
@@ -65,24 +70,33 @@ const InstallPWAPrompt = () => {
   }, []);
 
   const handleInstall = async () => {
-    if (deferredPrompt) {
-      try {
-        await deferredPrompt.prompt();
-        const { outcome } = await deferredPrompt.userChoice;
-        console.log("PWA: User choice:", outcome);
-        if (outcome === "accepted") {
-          localStorage.setItem("pwaInstalled", "true");
-        }
-        setDeferredPrompt(null);
-        setIsVisible(false);
-      } catch (error) {
-        console.error("PWA: Error during install:", error);
-        setIsVisible(false);
+    // Se não tem prompt nativo, mostramos instruções (Chrome iOS / alguns cenários do Chrome Android)
+    if (!deferredPrompt) {
+      if (!isSecure) {
+        setInstallError("Para instalar, o site precisa estar em HTTPS.");
+      } else if (isIOS) {
+        setInstallError(null);
+      } else {
+        setInstallError(
+          'Se não aparecer o popup, abra o menu ⋮ do Chrome e toque em "Instalar app" (ou "Adicionar à tela inicial").'
+        );
       }
-    } else {
-      // Se não tem prompt nativo, apenas fecha (iOS mostra instruções)
-      console.log("PWA: No native prompt available");
+      return;
+    }
+
+    try {
+      await deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log("PWA: User choice:", outcome);
+      if (outcome === "accepted") {
+        localStorage.setItem("pwaInstalled", "true");
+      }
+      setDeferredPrompt(null);
+      setInstallError(null);
       setIsVisible(false);
+    } catch (error) {
+      console.error("PWA: Error during install:", error);
+      setInstallError("Não foi possível abrir o instalador. Tente pelo menu ⋮ do Chrome.");
     }
   };
 
@@ -168,6 +182,13 @@ const InstallPWAPrompt = () => {
                   </p>
                 )}
 
+                {/* Feedback quando o Chrome não mostra o popup */}
+                {installError && (
+                  <p className="text-gold-300/90 text-[11px] leading-relaxed mb-2">
+                    {installError}
+                  </p>
+                )}
+
                 {/* Buttons */}
                 <div className="flex flex-col gap-1.5">
                   {deferredPrompt ? (
@@ -181,11 +202,11 @@ const InstallPWAPrompt = () => {
                     </Button>
                   ) : (
                     <Button
-                      onClick={handleDismiss}
+                      onClick={handleInstall}
                       size="sm"
                       className="w-full bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 text-chocolate-950 font-bold text-xs py-2 rounded-lg shadow-gold hover:scale-[1.02] transition-all"
                     >
-                      Entendi
+                      {isIOS ? "Como instalar" : "Como instalar no Chrome"}
                     </Button>
                   )}
 
@@ -193,7 +214,7 @@ const InstallPWAPrompt = () => {
                     onClick={handleDismiss}
                     className="text-gold-400/50 hover:text-gold-300 text-[10px] transition-colors"
                   >
-                    {deferredPrompt ? "Agora não" : "Fechar"}
+                    Fechar
                   </button>
                 </div>
               </div>
