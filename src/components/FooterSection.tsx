@@ -89,7 +89,7 @@ const FooterSection = () => {
                   <contact.icon className="w-5 h-5 text-gold-400" />
                 </div>
                 <p className="font-body text-xs text-gold-400/60 uppercase tracking-wider mb-1">{contact.label}</p>
-                <p className="font-body text-sm text-gold-100 leading-relaxed">{contact.value}</p>
+                <p className="font-body text-xs sm:text-sm text-gold-100 leading-relaxed break-all">{contact.value}</p>
               </motion.a>
             ))}
           </motion.div>
