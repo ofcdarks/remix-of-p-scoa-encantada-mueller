@@ -38,7 +38,7 @@ const BeneficiosSection = () => {
   ];
 
   return (
-    <section className="py-24 lg:py-32 gradient-chocolate relative overflow-hidden" ref={ref}>
+    <section id="beneficios" className="py-24 lg:py-32 gradient-chocolate relative overflow-hidden" ref={ref}>
       {/* Decorative lines */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-400/30 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-400/30 to-transparent" />
