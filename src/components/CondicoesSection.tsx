@@ -3,6 +3,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { CreditCard, FileText, BadgePercent, Check, Zap } from "lucide-react";
 import easterTruffles from "@/assets/easter-truffles.jpg";
+import AnimatedCounter from "./AnimatedCounter";
 
 const CondicoesSection = () => {
   const ref = useRef(null);
@@ -19,7 +20,8 @@ const CondicoesSection = () => {
     {
       icon: FileText,
       title: "Boleto Empresarial",
-      highlight: "30 dias",
+      highlightNumber: 30,
+      highlightSuffix: " dias",
       description: "Boleto para 30 dias em compras diretas da empresa",
       benefits: ["Flexibilidade", "Planejamento", "Sem entrada"]
     },
@@ -86,7 +88,11 @@ const CondicoesSection = () => {
                   {/* Highlight Badge */}
                   <div className="absolute -top-3 left-6">
                     <span className="inline-block px-3 py-1 rounded-full bg-gradient-to-r from-gold-500 to-gold-600 text-chocolate-950 text-xs font-bold uppercase tracking-wider shadow-sm group-hover:shadow-gold transition-shadow duration-300">
-                      {condition.highlight}
+                      {condition.highlightNumber ? (
+                        <><AnimatedCounter target={condition.highlightNumber} duration={1500} />{condition.highlightSuffix}</>
+                      ) : (
+                        condition.highlight
+                      )}
                     </span>
                   </div>
 
