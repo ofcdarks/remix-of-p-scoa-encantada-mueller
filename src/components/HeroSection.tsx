@@ -131,38 +131,20 @@ const HeroSection = () => {
           <img src={logoImage} alt="Florybal Logo" className="h-24 md:h-32 lg:h-40 object-contain drop-shadow-lg" />
         </motion.div>
 
-        {/* Exclusive Badge with shimmer effect */}
+        {/* Exclusive Badge - Compact */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="relative inline-flex items-center gap-2 bg-gradient-to-r from-gold-600/90 via-gold-500/95 to-gold-600/90 backdrop-blur-md border-2 border-gold-400/60 rounded-full px-8 py-3 mb-10 overflow-hidden group shadow-gold"
+          className="relative inline-flex items-center gap-1.5 bg-gradient-to-r from-gold-600/90 via-gold-500/95 to-gold-600/90 backdrop-blur-md border border-gold-400/60 rounded-full px-5 py-2 mb-8 overflow-hidden group shadow-gold"
         >
           {/* Shimmer effect */}
           <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-          {/* Animated border glow */}
-          <motion.div 
-            animate={{ opacity: [0.4, 0.8, 0.4] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute inset-0 rounded-full border-2 border-gold-300/50"
-          />
-          <motion.span 
-            animate={{ rotate: [0, 10, -10, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="text-lg relative z-10"
-          >
-            🍫
-          </motion.span>
-          <span className="text-chocolate-950 font-body text-sm tracking-[0.2em] font-bold uppercase relative z-10">
+          <span className="text-sm relative z-10">🍫</span>
+          <span className="text-chocolate-950 font-body text-xs tracking-[0.15em] font-bold uppercase relative z-10">
             Proposta Exclusiva
           </span>
-          <motion.span 
-            animate={{ rotate: [0, -10, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-            className="text-lg relative z-10"
-          >
-            🍫
-          </motion.span>
+          <span className="text-sm relative z-10">🍫</span>
         </motion.div>
 
         {/* Main Heading - Larger, more dramatic */}

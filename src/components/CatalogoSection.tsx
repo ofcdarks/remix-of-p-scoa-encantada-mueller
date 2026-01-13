@@ -58,12 +58,12 @@ const CatalogoSection = () => {
     <section
       ref={ref}
       id="catalogo"
-      className="relative py-20 md:py-32 overflow-hidden bg-gradient-to-b from-amber-50 via-orange-50 to-amber-100"
+      className="relative py-20 md:py-32 overflow-hidden bg-gradient-to-b from-cream-50 via-secondary to-cream-100"
     >
       {/* Background decorations */}
       <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-10 left-10 w-40 h-40 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-20 w-60 h-60 bg-gradient-to-br from-orange-400 to-amber-500 rounded-full blur-3xl" />
+        <div className="absolute top-10 left-10 w-40 h-40 bg-gradient-to-br from-gold-400 to-chocolate-500 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-20 w-60 h-60 bg-gradient-to-br from-chocolate-400 to-gold-500 rounded-full blur-3xl" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -74,14 +74,14 @@ const CatalogoSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-chocolate-700 to-chocolate-800 text-gold-200 px-4 py-2 rounded-full text-sm font-medium mb-6 shadow-md">
             <BookOpen className="w-4 h-4" />
             Catálogo Completo
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-amber-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-chocolate-800 mb-4">
             Catálogo Páscoa 2026
           </h2>
-          <p className="text-lg text-amber-700 max-w-2xl mx-auto">
+          <p className="text-lg text-chocolate-600 max-w-2xl mx-auto">
             Conheça toda a linha de produtos Florybal para esta Páscoa. 
             Navegue pelas páginas e descubra as delícias que preparamos para você!
           </p>
@@ -95,18 +95,18 @@ const CatalogoSection = () => {
           className="max-w-6xl mx-auto"
         >
           {/* Main Viewer */}
-          <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden border-4 border-amber-200">
+          <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden border-4 border-chocolate-200">
             {/* Navigation Arrows */}
             <button
               onClick={prevPage}
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-amber-800 p-3 rounded-full shadow-lg transition-all hover:scale-110"
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-chocolate-700 p-3 rounded-full shadow-lg transition-all hover:scale-110"
               aria-label="Página anterior"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
             <button
               onClick={nextPage}
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-amber-800 p-3 rounded-full shadow-lg transition-all hover:scale-110"
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-chocolate-700 p-3 rounded-full shadow-lg transition-all hover:scale-110"
               aria-label="Próxima página"
             >
               <ChevronRight className="w-6 h-6" />
@@ -115,7 +115,7 @@ const CatalogoSection = () => {
             {/* Zoom Button */}
             <button
               onClick={() => openZoom(catalogPages[currentPage].image)}
-              className="absolute top-4 right-4 z-20 bg-white/90 hover:bg-white text-amber-800 p-3 rounded-full shadow-lg transition-all hover:scale-110"
+              className="absolute top-4 right-4 z-20 bg-white/90 hover:bg-white text-chocolate-700 p-3 rounded-full shadow-lg transition-all hover:scale-110"
               aria-label="Ampliar imagem"
             >
               <ZoomIn className="w-5 h-5" />
@@ -127,7 +127,7 @@ const CatalogoSection = () => {
                 key={currentPage}
                 src={catalogPages[currentPage].image}
                 alt={catalogPages[currentPage].title}
-                className="w-full h-full object-contain bg-amber-50"
+                className="w-full h-full object-contain bg-cream-50"
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -50 }}
@@ -136,12 +136,12 @@ const CatalogoSection = () => {
             </div>
 
             {/* Page Info Bar */}
-            <div className="bg-gradient-to-r from-amber-600 to-orange-600 text-white px-6 py-4">
+            <div className="bg-gradient-to-r from-chocolate-700 to-chocolate-800 text-gold-100 px-6 py-4">
               <div className="flex items-center justify-between">
                 <h3 className="font-semibold text-lg">
                   {catalogPages[currentPage].title}
                 </h3>
-                <span className="bg-white/20 px-4 py-1 rounded-full text-sm font-medium">
+                <span className="bg-gold-500/20 px-4 py-1 rounded-full text-sm font-medium text-gold-200">
                   Página {currentPage + 1} de {catalogPages.length}
                 </span>
               </div>
@@ -157,7 +157,7 @@ const CatalogoSection = () => {
                   onClick={() => setCurrentPage(index)}
                   className={`relative rounded-lg overflow-hidden transition-all duration-300 ${
                     currentPage === index
-                      ? "ring-4 ring-amber-500 scale-105 shadow-lg"
+                      ? "ring-4 ring-gold-500 scale-105 shadow-lg"
                       : "opacity-70 hover:opacity-100 hover:scale-102"
                   }`}
                 >
@@ -169,7 +169,7 @@ const CatalogoSection = () => {
                   <div
                     className={`absolute inset-0 flex items-center justify-center text-white font-bold text-sm ${
                       currentPage === index
-                        ? "bg-amber-600/50"
+                        ? "bg-chocolate-700/50"
                         : "bg-black/30 hover:bg-black/20"
                     }`}
                   >
@@ -187,7 +187,7 @@ const CatalogoSection = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="mt-8 text-center"
           >
-            <p className="text-amber-700 mb-4">
+            <p className="text-chocolate-600 mb-4">
               Clique nas setas ou miniaturas para navegar pelo catálogo. 
               Use o botão de zoom para ver os detalhes.
             </p>
