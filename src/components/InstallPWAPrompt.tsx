@@ -17,48 +17,45 @@ const InstallPWAPrompt = () => {
     const dismissed = localStorage.getItem("pwaPromptDismissed");
     const installed = localStorage.getItem("pwaInstalled");
     
+    console.log("PWA prompt status:", { dismissed, installed });
+    
     if (dismissed || installed) return;
 
     // Capturar o evento beforeinstallprompt
     const handleBeforeInstall = (e: Event) => {
       e.preventDefault();
+      console.log("beforeinstallprompt event captured");
       setDeferredPrompt(e as BeforeInstallPromptEvent);
     };
 
     window.addEventListener("beforeinstallprompt", handleBeforeInstall);
 
-    // Mostrar após 5 segundos
-    const timer = setTimeout(() => {
-      // Em iOS não tem beforeinstallprompt, mas ainda mostramos instruções
-      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-      const isStandalone = window.matchMedia("(display-mode: standalone)").matches;
-      
-      if (!isStandalone && (deferredPrompt || isIOS)) {
-        setIsVisible(true);
-      }
-    }, 5000);
-
     // Verificar se já está instalado
-    window.addEventListener("appinstalled", () => {
+    const handleAppInstalled = () => {
       localStorage.setItem("pwaInstalled", "true");
       setIsVisible(false);
-    });
+    };
+    
+    window.addEventListener("appinstalled", handleAppInstalled);
 
     return () => {
-      clearTimeout(timer);
       window.removeEventListener("beforeinstallprompt", handleBeforeInstall);
+      window.removeEventListener("appinstalled", handleAppInstalled);
     };
-  }, [deferredPrompt]);
+  }, []);
 
-  // Mostrar para iOS também após delay
+  // Mostrar após delay (funciona para iOS e quando beforeinstallprompt não dispara)
   useEffect(() => {
     const dismissed = localStorage.getItem("pwaPromptDismissed");
     const installed = localStorage.getItem("pwaInstalled");
     const isStandalone = window.matchMedia("(display-mode: standalone)").matches;
     
+    console.log("PWA check:", { dismissed, installed, isStandalone });
+    
     if (dismissed || installed || isStandalone) return;
 
     const timer = setTimeout(() => {
+      console.log("Showing PWA prompt");
       setIsVisible(true);
     }, 5000);
 
