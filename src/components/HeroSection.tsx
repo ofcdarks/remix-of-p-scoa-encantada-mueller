@@ -1,9 +1,12 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import heroImage from "@/assets/licores-duo.png";
+import heroImage from "@/assets/easter-hero-eggs.jpg";
+import easterBunny from "@/assets/easter-bunny-chocolates.jpg";
+import easterTruffles from "@/assets/easter-truffles.jpg";
+import easterEggsOpen from "@/assets/easter-eggs-open.jpg";
 import logoImage from "@/assets/florybal-logo.jpg";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, Sparkles, Award, Star } from "lucide-react";
+import { ChevronDown, Sparkles, Egg } from "lucide-react";
 
 const HeroSection = () => {
   const containerRef = useRef(null);
@@ -53,6 +56,66 @@ const HeroSection = () => {
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
         className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-easter/10 rounded-full blur-[100px]"
       />
+
+      {/* Floating Easter chocolate images */}
+      <motion.div
+        initial={{ opacity: 0, x: -100 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1.2, delay: 0.8 }}
+        className="absolute left-4 lg:left-16 top-1/3 hidden md:block"
+      >
+        <motion.div
+          animate={{ y: [0, -15, 0], rotate: [-2, 2, -2] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="relative"
+        >
+          <img 
+            src={easterBunny} 
+            alt="Coelho de Páscoa de chocolate"
+            className="w-32 lg:w-44 h-auto rounded-2xl shadow-2xl border-2 border-gold-400/30 object-cover"
+          />
+          <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gold-500 rounded-full flex items-center justify-center shadow-lg">
+            <Egg className="w-4 h-4 text-chocolate-950" />
+          </div>
+        </motion.div>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1.2, delay: 1 }}
+        className="absolute right-4 lg:right-16 top-1/4 hidden md:block"
+      >
+        <motion.div
+          animate={{ y: [0, 12, 0], rotate: [2, -2, 2] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="relative"
+        >
+          <img 
+            src={easterTruffles} 
+            alt="Trufas de Páscoa"
+            className="w-28 lg:w-36 h-auto rounded-2xl shadow-2xl border-2 border-gold-400/30 object-cover"
+          />
+        </motion.div>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, delay: 1.2 }}
+        className="absolute right-8 lg:right-28 bottom-1/3 hidden lg:block"
+      >
+        <motion.div
+          animate={{ y: [0, -10, 0], scale: [1, 1.02, 1] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+        >
+          <img 
+            src={easterEggsOpen} 
+            alt="Ovos de Páscoa abertos"
+            className="w-32 lg:w-40 h-auto rounded-2xl shadow-2xl border-2 border-gold-400/30 object-cover"
+          />
+        </motion.div>
+      </motion.div>
 
       {/* Content */}
       <motion.div style={{ opacity }} className="relative z-10 text-center px-6 max-w-5xl mx-auto">
