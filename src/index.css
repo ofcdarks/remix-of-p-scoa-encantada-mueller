@@ -194,6 +194,36 @@
     scrollbar-width: thin;
     scrollbar-color: hsl(var(--muted)) transparent;
   }
+}
+
+/* Custom Scrollbar - Chocolate/Gold Theme */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(20 30% 12%);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, hsl(38 70% 45%) 0%, hsl(15 45% 30%) 100%);
+  border-radius: 5px;
+  border: 2px solid hsl(20 30% 12%);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, hsl(38 70% 55%) 0%, hsl(15 45% 35%) 100%);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(38 70% 45%) hsl(20 30% 12%);
+}
+
+@layer utilities {
 
   /* Glass morphism card */
   .glass-card {
