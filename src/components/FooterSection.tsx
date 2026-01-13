@@ -13,14 +13,14 @@ const FooterSection = () => {
     {
       icon: Phone,
       label: "Telefone",
-      value: "(47) 99769-9193",
-      href: "tel:+5547997699193",
+      value: "(47) 99919-1829",
+      href: "tel:+5547999191829",
     },
     {
       icon: Mail,
       label: "E-mail",
-      value: "comercialflorybalsc@gmail.com",
-      href: "mailto:comercialflorybalsc@gmail.com",
+      value: "florybalpomerode@gmail.com",
+      href: "mailto:florybalpomerode@gmail.com",
     },
     {
       icon: Instagram,
@@ -107,7 +107,7 @@ const FooterSection = () => {
               className="group"
             >
               <a 
-                href="https://wa.me/5547997699193?text=Olá!%20Tenho%20interesse%20na%20Feira%20de%20Páscoa%20Florybal%20para%20a%20empresa%20Mueller.%20Gostaria%20de%20agendar%20uma%20conversa."
+                href="https://wa.me/5547999191829?text=Olá!%20Tenho%20interesse%20na%20Feira%20de%20Páscoa%20Florybal%20para%20a%20empresa%20Mueller.%20Gostaria%20de%20agendar%20uma%20conversa."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3"
