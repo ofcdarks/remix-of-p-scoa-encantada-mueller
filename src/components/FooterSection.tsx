@@ -62,7 +62,7 @@ const FooterSection = () => {
               <span className="font-body text-gold-300/80 tracking-wide">Com carinho,</span>
             </div>
             <h3 className="font-display text-2xl md:text-3xl text-gold-50 mb-2">
-              Equipe Florybal
+              Equipe Florybal Pomerode
             </h3>
             <p className="font-body text-gold-400/70">Chocolates Caseiros • Pomerode/SC</p>
           </motion.div>
@@ -89,7 +89,7 @@ const FooterSection = () => {
                   <contact.icon className="w-5 h-5 text-gold-400" />
                 </div>
                 <p className="font-body text-xs text-gold-400/60 uppercase tracking-wider mb-1">{contact.label}</p>
-                <p className="font-body text-xs sm:text-sm text-gold-100 leading-relaxed break-all">{contact.value}</p>
+                <p className="font-body text-[10px] sm:text-xs text-gold-100 leading-relaxed whitespace-nowrap">{contact.value}</p>
               </motion.a>
             ))}
           </motion.div>
