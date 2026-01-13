@@ -116,7 +116,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 1 }}
           className="font-display text-xl md:text-2xl text-gold-400 mb-12"
         >
-          Para a equipe <span className="font-semibold">Mueller</span>
+          Para a sua <span className="font-semibold">Empresa</span>
         </motion.p>
 
         {/* CTA Buttons - Better visual hierarchy */}

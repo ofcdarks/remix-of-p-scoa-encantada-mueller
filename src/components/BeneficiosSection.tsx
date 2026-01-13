@@ -27,7 +27,7 @@ const BeneficiosSection = () => {
     {
       icon: Award,
       title: "Marca Premium",
-      description: "Associação da Mueller com experiência de alta qualidade",
+      description: "Associação da sua empresa com experiência de alta qualidade",
     },
     {
       icon: Settings,
