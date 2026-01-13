@@ -57,10 +57,9 @@ const ChatWidget = () => {
         className={`fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-gradient-to-br from-chocolate-600 via-chocolate-700 to-chocolate-800 shadow-xl flex items-center justify-center group transition-all duration-500 ${isOpen ? 'hidden' : ''}`}
         aria-label="Abrir chat"
       >
-        {/* Pulse rings - more visible */}
-        <span className="absolute inset-0 rounded-full bg-gold-400/25 animate-[pulse_2s_ease-in-out_infinite]" />
-        <span className="absolute inset-[-6px] rounded-full bg-gold-400/15 animate-[pulse_2.5s_ease-in-out_infinite]" style={{ animationDelay: '0.3s' }} />
-        <span className="absolute inset-[-12px] rounded-full border-2 border-gold-400/20 animate-[pulse_3s_ease-in-out_infinite]" style={{ animationDelay: '0.6s' }} />
+        {/* Pulsing gradient glow */}
+        <span className="absolute inset-[-8px] rounded-full bg-gradient-to-r from-gold-500/40 via-gold-400/20 to-gold-500/40 animate-[pulse_2s_ease-in-out_infinite] blur-sm" />
+        <span className="absolute inset-[-4px] rounded-full bg-gradient-to-br from-gold-400/30 via-chocolate-500/20 to-gold-400/30 animate-[pulse_2.5s_ease-in-out_infinite]" style={{ animationDelay: '0.5s' }} />
         
         {/* Inner glow on hover */}
         <div className="absolute inset-0 rounded-full bg-gradient-to-br from-gold-400/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
