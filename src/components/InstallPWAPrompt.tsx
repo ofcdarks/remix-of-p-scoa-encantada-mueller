@@ -73,13 +73,13 @@ const InstallPWAPrompt = () => {
             className="fixed inset-0 bg-chocolate-950/80 backdrop-blur-sm z-[200]"
           />
 
-          {/* Modal */}
+          {/* Modal - posicionado perto do chat widget */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[201] w-[90%] max-w-[280px]"
+            className="fixed bottom-24 right-4 sm:bottom-28 sm:right-6 z-[201] w-[85%] max-w-[280px]"
           >
             <div className="bg-gradient-to-br from-chocolate-800 via-chocolate-900 to-chocolate-950 border border-gold-500/40 rounded-xl shadow-2xl overflow-hidden">
               {/* Gold accent line */}
