@@ -10,6 +10,7 @@ import ProximosPassosSection from "@/components/ProximosPassosSection";
 import FooterSection from "@/components/FooterSection";
 import CatalogoSection from "@/components/CatalogoSection";
 import ChatWidget from "@/components/ChatWidget";
+import CookieConsent from "@/components/CookieConsent";
 
 const Index = () => {
   return (
@@ -26,6 +27,7 @@ const Index = () => {
       <ProximosPassosSection />
       <FooterSection />
       <ChatWidget />
+      <CookieConsent />
     </main>
   );
 };
